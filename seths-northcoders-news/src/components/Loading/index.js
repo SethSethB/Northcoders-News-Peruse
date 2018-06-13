@@ -5,10 +5,10 @@ const Loading = () => {
   return (
     <Row>
       <Col s={12}>
-        <ProgressBar progress={70} />
+        <ProgressBar className="red" progress={70} />
       </Col>
       <Col s={12}>
-        <ProgressBar />
+        <ProgressBar className="red" />
       </Col>
     </Row>
   );

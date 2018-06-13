@@ -1,11 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
+
 import { Navbar, NavItem } from "react-materialize";
 
 const Nav = ({ loggedIn }) => {
   return (
-    <Navbar left>
-      <NavItem Link="/">PERUSE</NavItem>
+    <Navbar className="red accent-4" left>
+      <NavItem href="/">PERUSE</NavItem>
       <NavItem href="/post">POST</NavItem>
       <NavItem href="/people">PEOPLE</NavItem>
     </Navbar>

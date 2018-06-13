@@ -51,7 +51,11 @@ class PostArticle extends React.Component {
           />
         </Row>
 
-        <Button waves="light" className="red" onClick={this.postArticle}>
+        <Button
+          waves="light"
+          className="grey darken-4"
+          onClick={this.postArticle}
+        >
           POST
         </Button>
       </div>

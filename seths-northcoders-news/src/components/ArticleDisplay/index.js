@@ -44,12 +44,15 @@ class ArticleDisplay extends Component {
       <Loading />
     ) : (
       <div>
-        <TopicPick
-          availableTopics={availableTopics}
-          defaultOption="ALL"
-          handleTopicPick={this.handleTopicPick}
-        />
-        <h4>SORT BY</h4>
+        <Row>
+          <TopicPick
+            availableTopics={availableTopics}
+            defaultOption="ALL"
+            handleTopicPick={this.handleTopicPick}
+          />
+        </Row>
+
+        <p>SORT BY</p>
         <SortButtons handleSort={this.handleSort} />
         <Row>
           {selectedArticles.map(article => (
