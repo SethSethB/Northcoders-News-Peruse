@@ -4,20 +4,30 @@ import "./App.css";
 import Nav from "./components/Nav";
 import ArticleDisplay from "./components/ArticleDisplay";
 import PostArticle from "./components/PostArticle";
+import Article from "./components/ArticleDisplay";
+import axios from "axios";
+import Loading from "./components/Loading";
 
 class App extends Component {
   state = {
-    loggedIn: "guest",
-    availableTopics: [
-      { title: "Coding", slug: "coding" },
-      { title: "Football", slug: "football" },
-      { title: "Cooking", slug: "cooking" }
-    ]
+    loggedIn: "",
+    availableTopics: []
+  };
+
+  componentDidMount = async () => {
+    const {
+      data: { topics }
+    } = await this.fetchTopics();
+
+    this.setState({ availableTopics: topics });
   };
 
   render() {
-    const { loggedIn } = this.state;
-    return (
+    const { loggedIn, availableTopics } = this.state;
+
+    return !availableTopics.length ? (
+      <Loading />
+    ) : (
       <div>
         <Nav loggedIn={loggedIn} />
         <Route
@@ -26,8 +36,8 @@ class App extends Component {
           render={props => (
             <ArticleDisplay
               {...props}
-              loggedIn={this.state.loggedIn}
-              availableTopics={this.state.availableTopics}
+              loggedIn={loggedIn}
+              availableTopics={availableTopics}
             />
           )}
         />
@@ -35,6 +45,17 @@ class App extends Component {
           path="/post"
           render={props => (
             <PostArticle
+              {...props}
+              loggedIn={loggedIn}
+              availableTopics={availableTopics}
+            />
+          )}
+        />
+
+        <Route
+          path="/articles/:articleId"
+          render={props => (
+            <Article
               {...props}
               loggedIn={this.state.loggedIn}
               availableTopics={this.state.availableTopics}
@@ -44,6 +65,15 @@ class App extends Component {
       </div>
     );
   }
+
+  fetchTopics = async () => {
+    console.log("FETCHING");
+    const topics = await axios.get(
+      "https://seth-northcoders-news.herokuapp.com/api/topics"
+    );
+
+    return topics;
+  };
 }
 
 export default App;
