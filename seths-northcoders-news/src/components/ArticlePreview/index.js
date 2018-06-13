@@ -1,6 +1,7 @@
 import React from "react";
 import { Card, Col } from "react-materialize";
-import { Link } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
+import Article from "../Article";
 
 const ArticlePreview = ({ article }) => {
   return (
@@ -9,16 +10,22 @@ const ArticlePreview = ({ article }) => {
         <Card
           className="red lighten-2"
           textClassName="white-text"
-          title={article.comments}
+          title={article.title}
           actions={[
             <Link to={`/people/${article.NEEDPERSON}`}>
               By {article.created_by.username}
-            </Link>
+            </Link>,
+            <p>VOTES: {article.votes}</p>,
+            <p>COMMENTS: {article.comments} </p>
           ]}
         >
           {`${article.body.slice(0, 150)}...`}
         </Card>
       </Link>
+      <Route
+        path="/articles/:articleId"
+        render={props => <Article {...props} loggedIn={this.state.loggedIn} />}
+      />
     </Col>
   );
 };

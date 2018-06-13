@@ -15,8 +15,8 @@ class ArticleDisplay extends Component {
 
   componentDidMount = async () => {
     const data = await this.fetchArticles();
-    const articles = [...data.data.articles]
-    this.setState({ articles});
+    const articles = [...data.data.articles];
+    this.setState({ articles });
   };
 
   render() {
@@ -24,14 +24,20 @@ class ArticleDisplay extends Component {
     const { articles, currentTopic, currentSort } = this.state;
 
     articles.sort((a, b) => {
-      if (a[currentSort] < b[currentSort]) return -1;
-      if (a[currentSort] > b[currentSort]) return 1;
-      return 0;
+      if (currentSort === "title") {
+        if (a[currentSort] < b[currentSort]) return -1;
+        if (a[currentSort] > b[currentSort]) return 1;
+        return 0;
+      } else {
+        if (b[currentSort] < a[currentSort]) return -1;
+        if (b[currentSort] > a[currentSort]) return 1;
+        return 0;
+      }
     });
 
     const selectedArticles = articles.filter(article => {
       if (currentTopic === "ALL") return true;
-      return article.topic === currentTopic;
+      return article.belongs_to === currentTopic;
     });
 
     return !availableTopics.length ? (
@@ -67,7 +73,6 @@ class ArticleDisplay extends Component {
   };
 
   fetchArticles = async () => {
-
     const articles = await axios.get(
       "https://seth-northcoders-news.herokuapp.com/api/articles"
     );

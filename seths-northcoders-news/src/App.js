@@ -4,14 +4,16 @@ import "./App.css";
 import Nav from "./components/Nav";
 import ArticleDisplay from "./components/ArticleDisplay";
 import PostArticle from "./components/PostArticle";
-import Article from "./components/ArticleDisplay";
+
+import UserPick from "./components/UserPick";
 import axios from "axios";
 import Loading from "./components/Loading";
 
 class App extends Component {
   state = {
     loggedIn: "",
-    availableTopics: []
+    availableTopics: [],
+    users: []
   };
 
   componentDidMount = async () => {
@@ -19,13 +21,16 @@ class App extends Component {
       data: { topics }
     } = await this.fetchTopics();
 
-    this.setState({ availableTopics: topics });
+    const data = await this.fetchUsers();
+    const { users } = data.data;
+
+    this.setState({ availableTopics: topics, users });
   };
 
   render() {
-    const { loggedIn, availableTopics } = this.state;
+    const { loggedIn, availableTopics, users } = this.state;
 
-    return !availableTopics.length ? (
+    return !availableTopics.length || !users.length ? (
       <Loading />
     ) : (
       <div>
@@ -38,6 +43,7 @@ class App extends Component {
               {...props}
               loggedIn={loggedIn}
               availableTopics={availableTopics}
+              users={users}
             />
           )}
         />
@@ -53,13 +59,9 @@ class App extends Component {
         />
 
         <Route
-          path="/articles/:articleId"
+          path="/people"
           render={props => (
-            <Article
-              {...props}
-              loggedIn={this.state.loggedIn}
-              availableTopics={this.state.availableTopics}
-            />
+            <UserPick {...props} loggedIn={loggedIn} users={users} />
           )}
         />
       </div>
@@ -67,12 +69,19 @@ class App extends Component {
   }
 
   fetchTopics = async () => {
-    console.log("FETCHING");
     const topics = await axios.get(
       "https://seth-northcoders-news.herokuapp.com/api/topics"
     );
 
     return topics;
+  };
+
+  fetchUsers = async () => {
+    const users = await axios.get(
+      "https://seth-northcoders-news.herokuapp.com/api/users"
+    );
+
+    return users;
   };
 }
 

@@ -5,7 +5,7 @@ import { Navbar, NavItem } from "react-materialize";
 const Nav = ({ loggedIn }) => {
   return (
     <Navbar left>
-      <NavItem href="/">PERUSE</NavItem>
+      <NavItem Link="/">PERUSE</NavItem>
       <NavItem href="/post">POST</NavItem>
       <NavItem href="/people">PEOPLE</NavItem>
     </Navbar>
