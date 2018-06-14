@@ -28,12 +28,14 @@ class Article extends React.Component {
       return 0;
     });
 
-    return (
+    return article == {} || comments.length !== article.comments ? (
+      <Loading />
+    ) : (
       <div>
         <h1 className="cyan lighten-1">{article.title}</h1>
         <h4>{article.belongs_to}</h4>
         <article>{article.body}</article>
-        <PostComment />
+
         <h3>
           VOTES {article.votes}{" "}
           <Button
@@ -52,7 +54,8 @@ class Article extends React.Component {
             waves="light"
             icon="thumb_down"
           />
-        </h3>{" "}
+        </h3>
+        <PostComment postComment={this.postComment} />
         <h1 className="cyan lighten-1">COMMENTS</h1>
         {comments.map(comment => (
           <Comment
@@ -64,6 +67,25 @@ class Article extends React.Component {
       </div>
     );
   }
+
+  postComment = comment => {
+    const articleID = this.props.match.params.articleId;
+    // api.postComment(comment, articleID);
+
+    const { comments, article } = this.state;
+    comments.push({
+      body: comment,
+      created_by: { username: "guest" },
+      _id: "temp",
+      created_at: Date.now(),
+      votes: 0
+    });
+
+    this.setState({
+      comments,
+      article: { ...article, comments: article.comments + 1 }
+    });
+  };
 
   handleVote = vote => {
     const articleID = this.props.match.params.articleId;

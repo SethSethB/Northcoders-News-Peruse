@@ -84,11 +84,11 @@ class PostArticle extends React.Component {
           "\n"
         )}`
       );
-    const belongs_to =
+    const topicName =
       currentTopic === "New Topic" ? newTopicName : currentTopic;
 
     api
-      .postArticle(belongs_to, currentTitle, currentText)
+      .postArticle(topicName, currentTitle, currentText)
       .then(res => this.props.history.push(`/articles/${res.data._id}`));
   };
 
