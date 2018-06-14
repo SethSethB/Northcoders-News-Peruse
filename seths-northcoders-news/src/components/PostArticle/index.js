@@ -1,6 +1,7 @@
 import React from "react";
 import { Row, Input, Button } from "react-materialize";
 import TopicPick from "../TopicPick";
+import * as api from "../../api";
 
 class PostArticle extends React.Component {
   state = {
@@ -11,7 +12,7 @@ class PostArticle extends React.Component {
   };
 
   render() {
-    const { loggedIn, availableTopics } = this.props;
+    const { loggedIn, availableTopics, history } = this.props;
 
     return (
       <div>
@@ -27,7 +28,7 @@ class PostArticle extends React.Component {
               type="textarea"
               value={this.state.newTopicName}
               onChange={this.updateNewTopicName}
-              label="New Topic Name"
+              label="New Topic Name*"
             />
           )}
         </Row>
@@ -36,7 +37,7 @@ class PostArticle extends React.Component {
           <Input
             s={5}
             type="textarea"
-            label="Title"
+            label="Title*"
             value={this.state.currentTitle}
             onChange={this.updateTitleText}
           />
@@ -44,7 +45,7 @@ class PostArticle extends React.Component {
         <Row>
           <Input
             s={5}
-            label="Article"
+            label="Article*"
             type="textarea"
             value={this.state.currentText}
             onChange={this.updateArticleText}
@@ -63,7 +64,28 @@ class PostArticle extends React.Component {
   }
 
   postArticle = e => {
-    console.log("FunctionCall to api");
+    const {
+      currentTopic,
+      currentText,
+      currentTitle,
+      newTopicName
+    } = this.state;
+
+    const errors = [];
+
+    if (currentTopic === "New Topic" && !newTopicName)
+      errors.push("Topic Name");
+    if (!currentTitle) errors.push("Title");
+    if (!currentText) errors.push("Content");
+
+    if (errors.length)
+      return alert(
+        `Please complete the following before submitting:\n\n${errors.join(
+          "\n"
+        )}`
+      );
+    console.log("API CALL");
+    // api.postArticle;
 
     this.setState({
       currentTopic: "newTopic",
