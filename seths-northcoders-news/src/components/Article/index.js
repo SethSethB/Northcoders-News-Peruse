@@ -70,14 +70,14 @@ class Article extends React.Component {
 
   postComment = comment => {
     const articleID = this.props.match.params.articleId;
-    // api.postComment(comment, articleID);
-
+    api.postComment(comment, articleID);
+    const temp = Date.now();
     const { comments, article } = this.state;
     comments.push({
       body: comment,
       created_by: { username: "guest" },
-      _id: "temp",
-      created_at: Date.now(),
+      _id: temp,
+      created_at: temp,
       votes: 0
     });
 

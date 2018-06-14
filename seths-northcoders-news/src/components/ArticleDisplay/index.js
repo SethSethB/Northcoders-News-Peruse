@@ -15,9 +15,25 @@ class ArticleDisplay extends Component {
   };
 
   componentDidMount = async () => {
-    const data = await api.fetchArticles();
+    const { currentTopic } = this.state;
+    const data =
+      currentTopic === "ALL"
+        ? await api.fetchArticles()
+        : await api.fetchArticlesByTopic(currentTopic);
     const articles = [...data.data.articles];
     this.setState({ articles });
+  };
+
+  componentDidUpdate = async (prevProps, prevState) => {
+    const { currentTopic } = this.state;
+    if (prevState.currentTopic !== currentTopic) {
+      const data =
+        currentTopic === "ALL"
+          ? await api.fetchArticles()
+          : await api.fetchArticlesByTopic(currentTopic);
+      const articles = [...data.data.articles];
+      this.setState({ articles });
+    }
   };
 
   render() {

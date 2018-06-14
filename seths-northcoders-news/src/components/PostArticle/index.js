@@ -12,7 +12,7 @@ class PostArticle extends React.Component {
   };
 
   render() {
-    const { loggedIn, availableTopics, history } = this.props;
+    const { loggedIn, availableTopics } = this.props;
 
     return (
       <div>

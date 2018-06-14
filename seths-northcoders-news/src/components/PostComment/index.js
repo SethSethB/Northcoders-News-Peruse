@@ -7,7 +7,6 @@ class PostComment extends React.Component {
   };
 
   render() {
-    const { postComment } = this.props;
     return (
       <div>
         <Row>
@@ -21,7 +20,7 @@ class PostComment extends React.Component {
           <Button
             waves="light"
             className="grey darken-4"
-            onClick={() => postComment(this.state.commentText)}
+            onClick={this.submitComment}
           >
             POST
           </Button>
@@ -35,9 +34,12 @@ class PostComment extends React.Component {
     });
   };
 
-  postComment = () => {
-    const { commentText } = this.state;
-    console.log(commentText);
+  submitComment = () => {
+    const { postComment } = this.props;
+    postComment(this.state.commentText);
+    this.setState({
+      commentText: ""
+    });
   };
 }
 

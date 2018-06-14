@@ -47,3 +47,10 @@ export const postArticle = (topicName, title, body) => {
 export const postComment = async () => {
   console.log("HEY");
 };
+
+export const fetchArticlesByTopic = async currentTopic => {
+  const articles = await axios.get(
+    `${url}/topics/${currentTopic.toLowerCase()}/articles`
+  );
+  return articles;
+};

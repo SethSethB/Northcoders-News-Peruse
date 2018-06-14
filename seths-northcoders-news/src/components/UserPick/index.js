@@ -20,3 +20,7 @@ class UserPick extends React.Component {
 }
 
 export default UserPick;
+
+// GET /api/users/	"Returns list of all users"
+// GET /api/users/:username	"Returns user profile for a given username"
+// GET /api/users/:username/articles	"Returns list of all articles posted by given username"
