@@ -6,7 +6,7 @@ import ArticleDisplay from "./components/ArticleDisplay";
 import PostArticle from "./components/PostArticle";
 import Article from "./components/Article";
 import UserPick from "./components/UserPick";
-import axios from "axios";
+import * as api from "./api";
 import Loading from "./components/Loading";
 
 class App extends Component {
@@ -18,7 +18,7 @@ class App extends Component {
   componentDidMount = async () => {
     const {
       data: { topics }
-    } = await this.fetchTopics();
+    } = await api.fetchTopics();
 
     this.setState({ availableTopics: topics });
   };
@@ -67,14 +67,6 @@ class App extends Component {
       </div>
     );
   }
-
-  fetchTopics = async () => {
-    const topics = await axios.get(
-      "https://seth-northcoders-news.herokuapp.com/api/topics"
-    );
-
-    return topics;
-  };
 }
 
 export default App;

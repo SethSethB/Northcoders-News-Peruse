@@ -3,7 +3,8 @@ import TopicPick from "../TopicPick";
 import SortButtons from "../SortButtons";
 import ArticlePreview from "../ArticlePreview";
 import { Row } from "react-materialize";
-import axios from "axios";
+import * as api from "../../api";
+
 import Loading from "../Loading";
 
 class ArticleDisplay extends Component {
@@ -14,7 +15,7 @@ class ArticleDisplay extends Component {
   };
 
   componentDidMount = async () => {
-    const data = await this.fetchArticles();
+    const data = await api.fetchArticles();
     const articles = [...data.data.articles];
     this.setState({ articles });
   };
@@ -40,7 +41,7 @@ class ArticleDisplay extends Component {
       return article.belongs_to === currentTopic;
     });
 
-    return !availableTopics.length ? (
+    return !articles.length ? (
       <Loading />
     ) : (
       <div>
@@ -52,11 +53,11 @@ class ArticleDisplay extends Component {
           />
         </Row>
 
-        <p>SORT BY</p>
+        <label>SORT BY</label>
         <SortButtons handleSort={this.handleSort} />
         <Row>
           {selectedArticles.map(article => (
-            <ArticlePreview article={article} />
+            <ArticlePreview key={article._id} article={article} />
           ))}
         </Row>
       </div>
@@ -73,14 +74,6 @@ class ArticleDisplay extends Component {
     this.setState({
       currentSort: value
     });
-  };
-
-  fetchArticles = async () => {
-    const articles = await axios.get(
-      "https://seth-northcoders-news.herokuapp.com/api/articles"
-    );
-
-    return articles;
   };
 }
 

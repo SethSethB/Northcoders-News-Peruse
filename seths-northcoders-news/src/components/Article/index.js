@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios";
+import * as api from "../../api";
 import Loading from "../Loading";
 
 class Article extends React.Component {
@@ -7,10 +7,13 @@ class Article extends React.Component {
 
   componentDidMount = async () => {
     const articleID = this.props.match.params.articleId;
-    const article = await this.fetchArticle(articleID);
-    const comments = await this.fetchComments(articleID);
+    const articleRes = await api.fetchArticle(articleID);
+    const commentsRes = await api.fetchComments(articleID);
 
-    this.setState({ article: article.data, comments: comments.data.comments });
+    this.setState({
+      article: articleRes.data,
+      comments: commentsRes.data.comments
+    });
   };
   render() {
     const { loggedIn } = this.props;
@@ -18,20 +21,6 @@ class Article extends React.Component {
 
     return <h1 className="cyan lighten-1">ARTICLE HERE</h1>;
   }
-
-  fetchArticle = async id => {
-    const articles = await axios.get(
-      `https://seth-northcoders-news.herokuapp.com/api/articles/${id}`
-    );
-    return articles;
-  };
-
-  fetchComments = async id => {
-    const comments = await axios.get(
-      `https://seth-northcoders-news.herokuapp.com/api/articles/${id}/comments`
-    );
-    return comments;
-  };
 }
 
 export default Article;
