@@ -86,17 +86,10 @@ class PostArticle extends React.Component {
       );
     const belongs_to =
       currentTopic === "New Topic" ? newTopicName : currentTopic;
-    console.log("API CALL");
+
     api
       .postArticle(belongs_to, currentTitle, currentText)
-      .then(res => console.log(res));
-
-    this.setState({
-      currentTopic: "newTopic",
-      currentText: "",
-      currentTitle: "",
-      newTopicName: ""
-    });
+      .then(res => this.props.history.push(`/articles/${res.data._id}`));
   };
 
   handleTopicPick = ({ target: { value } }) => {
