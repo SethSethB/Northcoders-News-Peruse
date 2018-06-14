@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import TopicPick from "../TopicPick";
 import SortButtons from "../SortButtons";
 import ArticlePreview from "../ArticlePreview";
-import { Row } from "react-materialize";
+import { Row, Carousel } from "react-materialize";
 import * as api from "../../api";
 
 import Loading from "../Loading";
@@ -71,6 +71,7 @@ class ArticleDisplay extends Component {
 
         <label>SORT BY</label>
         <SortButtons handleSort={this.handleSort} />
+
         <Row>
           {selectedArticles.map(article => (
             <ArticlePreview key={article._id} article={article} />
