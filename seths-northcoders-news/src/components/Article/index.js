@@ -3,7 +3,7 @@ import * as api from "../../api";
 import Comment from "../Comment";
 import Loading from "../Loading";
 import PostComment from "../PostComment";
-import { Icon, Button } from "react-materialize";
+import { Button } from "react-materialize";
 
 class Article extends React.Component {
   state = { article: {}, comments: [] };
@@ -55,7 +55,11 @@ class Article extends React.Component {
         </h3>{" "}
         <h1 className="cyan lighten-1">COMMENTS</h1>
         {comments.map(comment => (
-          <Comment key={comment._id} comment={comment} />
+          <Comment
+            key={comment._id}
+            comment={comment}
+            handleCommentVote={this.handleCommentVote}
+          />
         ))}
       </div>
     );
@@ -76,6 +80,24 @@ class Article extends React.Component {
         ...this.state.article,
         votes
       }
+    });
+  };
+
+  handleCommentVote = (vote, commentId) => {
+    const { comments } = this.state;
+
+    const votedComment = comments.findIndex(
+      comment => comment._id === commentId
+    );
+
+    api.commentVote(vote, commentId);
+    const votes =
+      vote === "up"
+        ? comments[votedComment].votes++
+        : comments[votedComment].votes--;
+
+    this.setState({
+      comments
     });
   };
 }

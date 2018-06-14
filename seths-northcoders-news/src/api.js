@@ -32,3 +32,7 @@ export const fetchComments = async id => {
 export const articleVote = async (vote, id) => {
   await axios.put(`${url}/articles/${id}?vote=${vote}`);
 };
+
+export const commentVote = async (vote, id) => {
+  await axios.put(`${url}/comments/${id}?vote=${vote}`);
+};
