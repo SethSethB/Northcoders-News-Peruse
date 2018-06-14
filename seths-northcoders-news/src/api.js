@@ -36,3 +36,10 @@ export const articleVote = async (vote, id) => {
 export const commentVote = async (vote, id) => {
   await axios.put(`${url}/comments/${id}?vote=${vote}`);
 };
+
+export const postArticle = (belongs_to, title, body) => {
+  return axios.post(`${url}/topics/${belongs_to.toLowerCase()}/articles`, {
+    title,
+    body
+  });
+};

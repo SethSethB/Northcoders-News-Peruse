@@ -28,7 +28,7 @@ class PostArticle extends React.Component {
               type="textarea"
               value={this.state.newTopicName}
               onChange={this.updateNewTopicName}
-              label="New Topic Name*"
+              label="Topic Name*"
             />
           )}
         </Row>
@@ -45,7 +45,7 @@ class PostArticle extends React.Component {
         <Row>
           <Input
             s={5}
-            label="Article*"
+            label="Content*"
             type="textarea"
             value={this.state.currentText}
             onChange={this.updateArticleText}
@@ -84,8 +84,12 @@ class PostArticle extends React.Component {
           "\n"
         )}`
       );
+    const belongs_to =
+      currentTopic === "New Topic" ? newTopicName : currentTopic;
     console.log("API CALL");
-    // api.postArticle;
+    api
+      .postArticle(belongs_to, currentTitle, currentText)
+      .then(res => console.log(res));
 
     this.setState({
       currentTopic: "newTopic",
