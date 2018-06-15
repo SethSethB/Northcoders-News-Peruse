@@ -45,9 +45,10 @@ export const postArticle = (topicName, title, body, username) => {
   });
 };
 
-export const postComment = async (comment, articleID) => {
+export const postComment = async (comment, articleID, postingUsername) => {
   const articles = await axios.post(`${url}/articles/${articleID}/comments`, {
-    comment
+    comment,
+    postingUsername
   });
   return articles;
 };
