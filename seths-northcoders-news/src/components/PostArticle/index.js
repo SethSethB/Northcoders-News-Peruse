@@ -12,7 +12,14 @@ class PostArticle extends React.Component {
   };
 
   render() {
-    const { loggedIn, availableTopics } = this.props;
+    const { loggedIn, availableTopics, postArticle } = this.props;
+
+    const {
+      currentTopic,
+      currentText,
+      currentTitle,
+      newTopicName
+    } = this.state;
 
     return (
       <div>
@@ -55,42 +62,15 @@ class PostArticle extends React.Component {
         <Button
           waves="light"
           className="grey darken-4"
-          onClick={this.postArticle}
+          onClick={() =>
+            postArticle(currentTopic, currentText, currentTitle, newTopicName)
+          }
         >
           POST
         </Button>
       </div>
     );
   }
-
-  postArticle = e => {
-    const {
-      currentTopic,
-      currentText,
-      currentTitle,
-      newTopicName
-    } = this.state;
-
-    const errors = [];
-
-    if (currentTopic === "New Topic" && !newTopicName)
-      errors.push("Topic Name");
-    if (!currentTitle) errors.push("Title");
-    if (!currentText) errors.push("Content");
-
-    if (errors.length)
-      return alert(
-        `Please complete the following before submitting:\n\n${errors.join(
-          "\n"
-        )}`
-      );
-    const topicName =
-      currentTopic === "New Topic" ? newTopicName : currentTopic;
-
-    api
-      .postArticle(topicName, currentTitle, currentText)
-      .then(res => this.props.history.push(`/articles/${res.data._id}`));
-  };
 
   handleTopicPick = ({ target: { value } }) => {
     this.setState({
