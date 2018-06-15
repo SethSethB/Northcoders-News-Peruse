@@ -18,9 +18,18 @@ class Article extends React.Component {
       comments: commentsRes.data.comments
     });
   };
+
   render() {
-    const { loggedIn } = this.props;
+    const {
+      loggedIn: { username }
+    } = this.props;
     const { article, comments } = this.state;
+
+    const disabled = !article.created_by
+      ? ""
+      : article.created_by.username === username && username !== "guest"
+        ? "true"
+        : "";
 
     comments.sort((a, b) => {
       if (b.created_at < a.created_at) return -1;
@@ -28,7 +37,7 @@ class Article extends React.Component {
       return 0;
     });
 
-    return article == {} || comments.length !== article.comments ? (
+    return !article.title || comments.length !== article.comments ? (
       <Loading />
     ) : (
       <div>
@@ -37,7 +46,7 @@ class Article extends React.Component {
         <article>{article.body}</article>
 
         <h3>
-          VOTES {article.votes}{" "}
+          VOTES {article.votes}
           <Button
             onClick={() => this.handleVote("up")}
             floating
@@ -45,6 +54,7 @@ class Article extends React.Component {
             className="red accent-4"
             waves="light"
             icon="thumb_up"
+            disabled={disabled}
           />
           <Button
             onClick={() => this.handleVote("down")}
@@ -53,12 +63,14 @@ class Article extends React.Component {
             className="red accent-4"
             waves="light"
             icon="thumb_down"
+            disabled={disabled}
           />
         </h3>
         <PostComment postComment={this.postComment} />
         <h1 className="cyan lighten-1">COMMENTS</h1>
         {comments.map(comment => (
           <Comment
+            username={username}
             key={comment._id}
             comment={comment}
             handleCommentVote={this.handleCommentVote}

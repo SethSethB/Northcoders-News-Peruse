@@ -1,0 +1,14 @@
+.card {
+  height: 30rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: flex-start;
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.card p {
+  color: yellow;
+  align-self: baseline;
+}

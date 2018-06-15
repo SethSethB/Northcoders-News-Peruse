@@ -25,7 +25,7 @@ const ArticlePreview = ({ article }) => {
             <p key={article._id + 3}>COMMENTS: {article.comments} </p>
           ]}
         >
-          {`${article.body.slice(0, 150)}...`}
+          {`${article.body.slice(0, 200)}...`}
         </Card>
       </Link>
     </Col>
