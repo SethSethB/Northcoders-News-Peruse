@@ -5,9 +5,10 @@ import DeleteButton from "../DeleteButton";
 class Comment extends React.Component {
   render() {
     const {
-      comment: { body, created_at, created_by, _id, votes },
+      comment: { key, body, created_at, created_by, _id, votes },
       handleCommentVote,
-      username
+      username,
+      deleteComment
     } = this.props;
 
     const disabled = !created_by
@@ -17,16 +18,16 @@ class Comment extends React.Component {
         : false;
 
     return (
-      <div key={_id}>
-        <p key={_id + 2}>{body}</p>
-        <label key={_id}>
+      <div key={key}>
+        <p key={key + "1"}>{body}</p>
+        <label key={key + "2"}>
           POSTED BY {created_by.username} AT {created_at}
         </label>
         {disabled && (
-          <DeleteButton comment_id={_id} deleteComment={this.deleteComment} />
+          <DeleteButton comment_id={_id} deleteComment={deleteComment} />
         )}
         <br />
-        <label key={_id + 1}>VOTES {votes}</label>
+        <label key={key + "3"}>VOTES {votes}</label>
 
         <Button
           onClick={() => handleCommentVote("up", _id)}
@@ -49,10 +50,6 @@ class Comment extends React.Component {
       </div>
     );
   }
-
-  deleteComment = comment_id => {
-    console.log(comment_id);
-  };
 }
 
 export default Comment;

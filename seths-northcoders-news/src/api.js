@@ -45,12 +45,11 @@ export const postArticle = (topicName, title, body, username) => {
   });
 };
 
-export const postComment = async (comment, articleID, postingUsername) => {
-  const articles = await axios.post(`${url}/articles/${articleID}/comments`, {
+export const postComment = (comment, articleID, postingUsername) => {
+  return axios.post(`${url}/articles/${articleID}/comments`, {
     comment,
     postingUsername
   });
-  return articles;
 };
 
 export const fetchArticlesByTopic = async currentTopic => {
@@ -58,4 +57,8 @@ export const fetchArticlesByTopic = async currentTopic => {
     `${url}/topics/${currentTopic.toLowerCase()}/articles`
   );
   return articles;
+};
+
+export const deleteCommentFromDB = comment_id => {
+  return axios.delete(`${url}/comments/${comment_id}/`);
 };

@@ -28,35 +28,44 @@ class CommentList extends React.Component {
       <div>
         <PostComment postComment={this.postComment} />
         <h1 className="cyan lighten-1">COMMENTS</h1>
-        {comments.map(comment => (
+        {comments.map((comment, i) => (
           <Comment
             username={this.props.username}
-            key={comment._id}
+            key={i}
             comment={comment}
             handleCommentVote={this.handleCommentVote}
+            deleteComment={this.deleteComment}
           />
         ))}
       </div>
     );
   }
 
+  deleteComment = comment_id => {
+    api.deleteCommentFromDB(comment_id).then(() => {
+      const comments = this.state.comments.filter(
+        comment => comment._id !== comment_id
+      );
+      this.setState({
+        comments
+      });
+    });
+  };
+
   postComment = comment => {
     const { articleId } = this.props;
     const { username } = this.props;
-    api.postComment(comment, articleId, username);
-    const temp = Date.now();
+    api.postComment(comment, articleId, username).then(({ data }) => {
+      const { comments } = this.state;
+      const { created_by } = data;
+      comments.push({
+        ...data,
+        created_by: { _id: created_by, username }
+      });
 
-    const { comments } = this.state;
-    comments.push({
-      body: comment,
-      created_by: { username },
-      _id: temp,
-      created_at: temp,
-      votes: 0
-    });
-
-    this.setState({
-      comments
+      this.setState({
+        comments
+      });
     });
   };
 
