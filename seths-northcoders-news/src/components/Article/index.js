@@ -1,29 +1,29 @@
 import React from "react";
 import * as api from "../../api";
-import Comment from "../Comment";
+
 import Loading from "../Loading";
-import PostComment from "../PostComment";
+
+import CommentList from "../CommentList";
 import { Button } from "react-materialize";
 
 class Article extends React.Component {
-  state = { article: {}, comments: [] };
+  state = { article: {} };
 
   componentDidMount = async () => {
-    const articleID = this.props.match.params.articleId;
-    const articleRes = await api.fetchArticle(articleID);
-    const commentsRes = await api.fetchComments(articleID);
+    const articleId = this.props.match.params.articleId;
+    const articleRes = await api.fetchArticle(articleId);
 
     this.setState({
-      article: articleRes.data,
-      comments: commentsRes.data.comments
+      article: articleRes.data
     });
   };
 
   render() {
+    const articleId = this.props.match.params.articleId;
     const {
       loggedIn: { username }
     } = this.props;
-    const { article, comments } = this.state;
+    const { article } = this.state;
 
     const disabled = !article.created_by
       ? false
@@ -31,13 +31,7 @@ class Article extends React.Component {
         ? true
         : false;
 
-    comments.sort((a, b) => {
-      if (b.created_at < a.created_at) return -1;
-      if (b.created_at > a.created_at) return 1;
-      return 0;
-    });
-
-    return !article.title || comments.length !== article.comments ? (
+    return !article.title ? (
       <Loading />
     ) : (
       <div>
@@ -66,42 +60,10 @@ class Article extends React.Component {
             disabled={disabled}
           />
         </h3>
-        <PostComment postComment={this.postComment} />
-        <h1 className="cyan lighten-1">COMMENTS</h1>
-        {comments.map(comment => (
-          <Comment
-            username={username}
-            key={comment._id}
-            comment={comment}
-            handleCommentVote={this.handleCommentVote}
-          />
-        ))}
+        <CommentList articleId={articleId} username={username} />
       </div>
     );
   }
-
-  postComment = comment => {
-    const articleID = this.props.match.params.articleId;
-    const {
-      loggedIn: { username }
-    } = this.props;
-    api.postComment(comment, articleID, username);
-    const temp = Date.now();
-
-    const { comments, article } = this.state;
-    comments.push({
-      body: comment,
-      created_by: { username },
-      _id: temp,
-      created_at: temp,
-      votes: 0
-    });
-
-    this.setState({
-      comments,
-      article: { ...article, comments: article.comments + 1 }
-    });
-  };
 
   handleVote = vote => {
     const articleID = this.props.match.params.articleId;
@@ -118,24 +80,6 @@ class Article extends React.Component {
         ...this.state.article,
         votes
       }
-    });
-  };
-
-  handleCommentVote = (vote, commentId) => {
-    const { comments } = this.state;
-
-    const votedComment = comments.findIndex(
-      comment => comment._id === commentId
-    );
-
-    api.commentVote(vote, commentId);
-    const votes =
-      vote === "up"
-        ? comments[votedComment].votes++
-        : comments[votedComment].votes--;
-
-    this.setState({
-      comments
     });
   };
 }

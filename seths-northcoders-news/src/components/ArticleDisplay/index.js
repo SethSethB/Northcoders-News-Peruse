@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import TopicPick from "../TopicPick";
 import SortButtons from "../SortButtons";
 import ArticlePreview from "../ArticlePreview";
-import { Row, Carousel } from "react-materialize";
+import { Row } from "react-materialize";
 import * as api from "../../api";
 
 import Loading from "../Loading";

@@ -1,7 +1,6 @@
 import React from "react";
 import { Row, Input, Button } from "react-materialize";
 import TopicPick from "../TopicPick";
-import * as api from "../../api";
 
 class PostArticle extends React.Component {
   state = {

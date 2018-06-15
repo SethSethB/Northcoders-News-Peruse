@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-import { Navbar, NavItem, Button, Chip, Modal, Input } from "react-materialize";
+import { Navbar, Button, Chip, Modal, Input } from "react-materialize";
 
 const Nav = ({ loggedIn: { avatar_url, username }, toggleLogin }) => {
   return (

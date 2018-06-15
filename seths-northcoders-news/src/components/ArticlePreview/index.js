@@ -12,12 +12,6 @@ const ArticlePreview = ({ article }) => {
           textClassName="white-text"
           title={article.title}
           actions={[
-            // <Link
-            //   key={article._id + 4}
-            //   to={`/people/${article.created_by.username}`}
-            // >
-            //   By {article.created_by.username}
-            // </Link>,
             <p key={article._id + 1}>
               CREATED BY: {article.created_by.username}
             </p>,
