@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "react-materialize";
+import DeleteButton from "../DeleteButton";
 
 class Comment extends React.Component {
   render() {
@@ -10,16 +11,18 @@ class Comment extends React.Component {
     } = this.props;
 
     const disabled = !created_by
-      ? ""
+      ? false
       : created_by.username === username && username !== "guest"
-        ? "true"
-        : "";
+        ? true
+        : false;
 
     return (
       <div key={_id}>
+        <p key={_id + 2}>{body}</p>
         <label key={_id}>
           POSTED BY {created_by.username} AT {created_at}
         </label>
+        {disabled && <DeleteButton />}
         <br />
         <label key={_id + 1}>VOTES {votes}</label>
 
@@ -41,11 +44,11 @@ class Comment extends React.Component {
           icon="thumb_down"
           disabled={disabled}
         />
-
-        <p key={_id + 2}>{body}</p>
       </div>
     );
   }
+
+  deleteComment;
 }
 
 export default Comment;

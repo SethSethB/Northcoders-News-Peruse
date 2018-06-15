@@ -26,10 +26,10 @@ class Article extends React.Component {
     const { article, comments } = this.state;
 
     const disabled = !article.created_by
-      ? ""
+      ? false
       : article.created_by.username === username && username !== "guest"
-        ? "true"
-        : "";
+        ? true
+        : false;
 
     comments.sort((a, b) => {
       if (b.created_at < a.created_at) return -1;
