@@ -22,7 +22,9 @@ class Comment extends React.Component {
         <label key={_id}>
           POSTED BY {created_by.username} AT {created_at}
         </label>
-        {disabled && <DeleteButton />}
+        {disabled && (
+          <DeleteButton comment_id={_id} deleteComment={this.deleteComment} />
+        )}
         <br />
         <label key={_id + 1}>VOTES {votes}</label>
 
@@ -48,7 +50,9 @@ class Comment extends React.Component {
     );
   }
 
-  deleteComment;
+  deleteComment = comment_id => {
+    console.log(comment_id);
+  };
 }
 
 export default Comment;

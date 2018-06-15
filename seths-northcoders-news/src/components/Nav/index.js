@@ -1,20 +1,26 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import { Navbar, NavItem, Button, Chip, Modal, Input } from "react-materialize";
 
 const Nav = ({ loggedIn: { avatar_url, username }, toggleLogin }) => {
   return (
     <Navbar className="red accent-4" left>
-      <Link to="/">
-        <NavItem>PERUSE</NavItem>
-      </Link>
-      <Link to="/post">
-        <NavItem>POST</NavItem>
-      </Link>
-      <Link to="/people">
-        <NavItem>PEOPLE</NavItem>
-      </Link>
+      <li>
+        <NavLink to="/">
+          <p>PERUSE</p>
+        </NavLink>
+      </li>
+      <li>
+        <NavLink to="/post">
+          <p>POST</p>
+        </NavLink>
+      </li>
+      <li>
+        <NavLink to="/people">
+          <p>PEOPLE</p>
+        </NavLink>
+      </li>
 
       {username === "guest" ? (
         <Modal

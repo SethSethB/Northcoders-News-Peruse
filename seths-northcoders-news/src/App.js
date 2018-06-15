@@ -21,13 +21,6 @@ class App extends Component {
     this.updateTopics();
   };
 
-  // componentDidUpdate = async (prevProps, prevState) => {
-  //   const { availableTopics } = this.state;
-  //   if (prevState.currentTopic.length !== availableTopics.length) {
-  //     this.setState({ articles });
-  //   }
-  // };
-
   render() {
     const { loggedIn, availableTopics } = this.state;
 
