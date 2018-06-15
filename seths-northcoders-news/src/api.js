@@ -37,15 +37,19 @@ export const commentVote = async (vote, id) => {
   await axios.put(`${url}/comments/${id}?vote=${vote}`);
 };
 
-export const postArticle = (topicName, title, body) => {
+export const postArticle = (topicName, title, body, username) => {
   return axios.post(`${url}/topics/${topicName.toLowerCase()}/articles`, {
     title,
-    body
+    body,
+    username
   });
 };
 
-export const postComment = async () => {
-  console.log("HEY");
+export const postComment = async (comment, articleID) => {
+  const articles = await axios.post(`${url}/articles/${articleID}/comments`, {
+    comment
+  });
+  return articles;
 };
 
 export const fetchArticlesByTopic = async currentTopic => {

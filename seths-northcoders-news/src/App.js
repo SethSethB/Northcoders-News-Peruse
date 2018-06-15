@@ -95,10 +95,14 @@ class App extends Component {
       history: { push }
     } = this.props;
 
-    api.postArticle(topicName, currentTitle, currentText).then(res => {
-      if (currentTopic === "New Topic") this.updateTopics();
-      push(`/articles/${res.data._id}`);
-    });
+    const { username } = this.state.loggedIn;
+
+    api
+      .postArticle(topicName, currentTitle, currentText, username)
+      .then(res => {
+        if (currentTopic === "New Topic") this.updateTopics();
+        push(`/articles/${res.data._id}`);
+      });
   };
 
   updateTopics = async () => {
