@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "react-materialize";
 import DeleteButton from "../DeleteButton";
+import moment from "moment";
 
 class Comment extends React.Component {
   render() {
@@ -21,7 +22,8 @@ class Comment extends React.Component {
       <div key={key}>
         <p key={key + "1"}>{body}</p>
         <label key={key + "2"}>
-          POSTED BY {created_by.username} AT {created_at}
+          POSTED BY {created_by.username} AT{" "}
+          {moment(created_at).format("MMMM Do YYYY, h:mm:ss a")}
         </label>
         {disabled && (
           <DeleteButton comment_id={_id} deleteComment={deleteComment} />

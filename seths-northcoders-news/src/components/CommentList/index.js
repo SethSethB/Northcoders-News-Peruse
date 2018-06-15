@@ -58,7 +58,7 @@ class CommentList extends React.Component {
     api.postComment(comment, articleId, username).then(({ data }) => {
       const { comments } = this.state;
       const { created_by } = data;
-      comments.push({
+      comments.unshift({
         ...data,
         created_by: { _id: created_by, username }
       });
