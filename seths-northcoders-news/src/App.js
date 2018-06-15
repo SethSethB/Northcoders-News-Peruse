@@ -8,15 +8,11 @@ import Article from "./components/Article";
 import UserPick from "./components/UserPick";
 import * as api from "./api";
 import Loading from "./components/Loading";
+import guestUser from "./data";
 
 class App extends Component {
   state = {
-    loggedIn: {
-      username: "guest",
-      name: "Guest User",
-      avatar_url:
-        "http://www.urbasm.com/wp-content/uploads/2014/10/Mr-Porter.jpeg"
-    },
+    loggedIn: guestUser,
     availableTopics: []
   };
 
@@ -33,12 +29,7 @@ class App extends Component {
         })
       : this.setState({
           availableTopics: topics,
-          loggedIn: {
-            username: "guest",
-            name: "Guest User",
-            avatar_url:
-              "http://www.urbasm.com/wp-content/uploads/2014/10/Mr-Porter.jpeg"
-          }
+          loggedIn: guestUser
         });
   };
 
@@ -91,23 +82,10 @@ class App extends Component {
     e.preventDefault();
 
     if (this.state.loggedIn.username !== "guest") {
-      localStorage.setItem(
-        "loggedIn",
-        JSON.stringify({
-          username: "guest",
-          name: "Guest User",
-          avatar_url:
-            "http://www.urbasm.com/wp-content/uploads/2014/10/Mr-Porter.jpeg"
-        })
-      );
+      localStorage.setItem("loggedIn", JSON.stringify(guestUser));
 
       return this.setState({
-        loggedIn: {
-          username: "guest",
-          name: "Guest User",
-          avatar_url:
-            "http://www.urbasm.com/wp-content/uploads/2014/10/Mr-Porter.jpeg"
-        }
+        loggedIn: guestUser
       });
     }
 
@@ -116,22 +94,21 @@ class App extends Component {
     localStorage.setItem(
       "loggedIn",
       JSON.stringify({
-        username: "dedekind561",
-        name: "mitch",
+        username: "happyamy2016",
+        name: "Amy Happy",
         avatar_url:
-          "https://carboncostume.com/wordpress/wp-content/uploads/2017/10/dale-chipanddalerescuerangers.jpg"
+          "http://vignette1.wikia.nocookie.net/mrmen/images/7/7f/Mr_Happy.jpg/revision/latest?cb=20140102171729"
       })
     );
 
     this.setState({
       loggedIn: {
-        username: "dedekind561",
-        name: "mitch",
+        username: "happyamy2016",
+        name: "Amy Happy",
         avatar_url:
-          "https://carboncostume.com/wordpress/wp-content/uploads/2017/10/dale-chipanddalerescuerangers.jpg"
+          "http://vignette1.wikia.nocookie.net/mrmen/images/7/7f/Mr_Happy.jpg/revision/latest?cb=20140102171729"
       }
     });
-    console.log("LOGGING IN");
   };
 }
 
