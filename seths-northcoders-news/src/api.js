@@ -45,7 +45,7 @@ export const commentVote = async (vote, id) => {
 };
 
 export const postArticle = (topicName, title, body, username) => {
-  return axios.post(`${url}/topics/${topicName.toLowerCase()}/articles`, {
+  return axios.post(`${url}/topics/${topicName}/articles`, {
     title,
     body,
     username

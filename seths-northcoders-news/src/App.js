@@ -84,17 +84,13 @@ class App extends Component {
     const topicName =
       currentTopic === "New Topic" ? newTopicName : currentTopic;
 
-    const {
-      history: { push }
-    } = this.props;
-
     const { username } = this.state.loggedIn;
 
     api
       .postArticle(topicName, currentTitle, currentText, username)
       .then(res => {
         if (currentTopic === "New Topic") this.updateTopics();
-        push(`/articles/${res.data._id}`);
+        this.props.history.push(`/articles/${res.data._id}`);
       });
   };
 
