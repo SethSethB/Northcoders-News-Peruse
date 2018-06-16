@@ -17,7 +17,7 @@ const Nav = ({ loggedIn: { avatar_url, username }, toggleLogin }) => {
         </NavLink>
       </li>
       <li>
-        <NavLink to="/people">
+        <NavLink to={`/people/${username}`}>
           <p>PEOPLE</p>
         </NavLink>
       </li>

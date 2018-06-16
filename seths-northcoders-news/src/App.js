@@ -64,7 +64,7 @@ class App extends Component {
         />
 
         <Route
-          path="/people"
+          path="/people/:username"
           render={props => <People {...props} loggedIn={loggedIn} />}
         />
 

@@ -6,18 +6,22 @@ import UserPick from "../UserPick";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import ArticlePreview from "../ArticlePreview";
+import SortButtons from "../SortButtons";
 
 class People extends React.Component {
   state = {
     users: [],
     articles: [],
-    selectedUser: ""
+    currentSort: "title"
   };
 
   componentDidMount = async () => {
     const {
-      loggedIn: { username: loggedInUsername }
+      loggedIn: { username: loggedInUsername },
+      match
     } = this.props;
+
+    const selectedUser = match.params.username;
 
     const {
       data: { users }
@@ -25,13 +29,13 @@ class People extends React.Component {
 
     const {
       data: { articles }
-    } = await api.fetchArticlesByUsername(loggedInUsername);
-    this.setState({ users, articles, selectedUser: loggedInUsername });
+    } = await api.fetchArticlesByUsername(selectedUser);
+    this.setState({ users, articles });
   };
 
-  componentDidUpdate = async (prevProps, prevState) => {
-    const { selectedUser } = this.state;
-    if (prevState.selectedUser !== selectedUser) {
+  componentDidUpdate = async prevProps => {
+    const selectedUser = this.props.match.params.username;
+    if (prevProps.match.params.username !== selectedUser) {
       const {
         data: { articles }
       } = await api.fetchArticlesByUsername(selectedUser);
@@ -41,11 +45,24 @@ class People extends React.Component {
   };
 
   render() {
-    const { users, articles } = this.state;
+    const { users, articles, currentSort } = this.state;
     const {
       loggedIn: { username: loggedInUsername }
     } = this.props;
+
     const otherUsers = users.filter(user => user.username !== loggedInUsername);
+
+    articles.sort((a, b) => {
+      if (currentSort === "title") {
+        if (a[currentSort] < b[currentSort]) return -1;
+        if (a[currentSort] > b[currentSort]) return 1;
+        return 0;
+      } else {
+        if (b[currentSort] < a[currentSort]) return -1;
+        if (b[currentSort] > a[currentSort]) return 1;
+        return 0;
+      }
+    });
 
     return !users.length ? (
       <Loading />
@@ -56,7 +73,7 @@ class People extends React.Component {
           defaultOption={loggedInUsername}
           handleUserPick={this.handleUserPick}
         />
-
+        <SortButtons handleSort={this.handleSort} />
         {articles.length ? (
           <Carousel
             width="70%"
@@ -78,9 +95,7 @@ class People extends React.Component {
   }
 
   handleUserPick = ({ target: { value } }) => {
-    this.setState({
-      selectedUser: value
-    });
+    this.props.history.push(`/people/${value}`);
   };
 
   handleSort = ({ target: { value } }) => {

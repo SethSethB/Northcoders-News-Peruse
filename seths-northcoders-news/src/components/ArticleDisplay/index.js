@@ -73,7 +73,6 @@ class ArticleDisplay extends Component {
           />
         </Row>
 
-        <label>SORT BY</label>
         <SortButtons handleSort={this.handleSort} />
 
         <Carousel

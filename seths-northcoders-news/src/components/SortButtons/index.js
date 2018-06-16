@@ -4,6 +4,7 @@ import { Button } from "react-materialize";
 const SortButton = ({ handleSort }) => {
   return (
     <div>
+      <label>SORT BY</label>
       <Button
         className="grey darken-4"
         waves="light"
