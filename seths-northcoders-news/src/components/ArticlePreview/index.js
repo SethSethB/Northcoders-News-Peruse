@@ -28,6 +28,7 @@ const ArticlePreview = ({
           <br />
           {body}
         </Card>
+        <p className="legend">Click to Read more</p>
       </Link>
     </Col>
   );

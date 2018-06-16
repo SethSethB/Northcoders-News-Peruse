@@ -4,6 +4,8 @@ import SortButtons from "../SortButtons";
 import ArticlePreview from "../ArticlePreview";
 import { Row } from "react-materialize";
 import * as api from "../../api";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 import Loading from "../Loading";
 
@@ -56,7 +58,7 @@ class ArticleDisplay extends Component {
       if (currentTopic === "ALL") return true;
       return article.belongs_to === currentTopic;
     });
-
+    console.log(selectedArticles);
     return !articles.length ? (
       <Loading />
     ) : (
@@ -72,11 +74,18 @@ class ArticleDisplay extends Component {
         <label>SORT BY</label>
         <SortButtons handleSort={this.handleSort} />
 
-        <Row>
+        <Carousel
+          width="70%"
+          showThumbs={false}
+          showIndicators={false}
+          autoPlay
+          useKeyboardArrows={true}
+          infiniteLoop={true}
+        >
           {selectedArticles.map(article => (
             <ArticlePreview key={article._id} article={article} />
           ))}
-        </Row>
+        </Carousel>
       </div>
     );
   }

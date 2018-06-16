@@ -1,7 +1,9 @@
 import React from "react";
 import * as api from "../../api";
-import { Carousel } from "react-materialize";
+import { Link } from "react-router-dom";
 import Loading from "../Loading";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 class People extends React.Component {
   state = {
@@ -18,13 +20,20 @@ class People extends React.Component {
 
   render() {
     const { users } = this.state;
-    const avatars = users.map(user => user.avatar_url);
+    const avatars = users.map(user => {
+      return (
+        <div>
+          <img src={user.avatar_url} />
+          <Link to="/" className="legend">
+            {user.username}
+          </Link>
+        </div>
+      );
+    });
     return !users.length ? (
       <Loading />
     ) : (
-      <div>
-        <Carousel images={avatars} />
-      </div>
+      <Carousel autoPlay>{avatars}</Carousel>
     );
   }
 }
