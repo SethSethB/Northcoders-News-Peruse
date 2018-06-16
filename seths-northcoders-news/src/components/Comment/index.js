@@ -14,9 +14,7 @@ class Comment extends React.Component {
 
     const disabled = !created_by
       ? false
-      : created_by.username === username && username !== "guest"
-        ? true
-        : false;
+      : created_by.username === username && username !== "guest";
 
     return (
       <div key={key}>

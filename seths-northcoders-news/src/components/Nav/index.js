@@ -7,7 +7,7 @@ const Nav = ({ loggedIn: { avatar_url, username }, toggleLogin }) => {
   return (
     <Navbar className="red accent-4" left>
       <li>
-        <NavLink to="/">
+        <NavLink className="no-hover" to="/">
           <p>PERUSE</p>
         </NavLink>
       </li>
@@ -33,7 +33,15 @@ const Nav = ({ loggedIn: { avatar_url, username }, toggleLogin }) => {
           }
         >
           <form onSubmit={toggleLogin}>
-            <Input s={2} label="Username" type="textarea" id="username" />
+            <Input
+              key={1}
+              s={2}
+              label="Username"
+              type="textarea"
+              id="username"
+              defaultValue="happyamy2016"
+            />
+
             <Button type="submit">LOGIN</Button>
           </form>
         </Modal>

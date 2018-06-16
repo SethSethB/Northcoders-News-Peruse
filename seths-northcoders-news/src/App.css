@@ -12,3 +12,7 @@
   color: yellow;
   align-self: baseline;
 }
+
+.chip {
+  background: paleturquoise;
+}

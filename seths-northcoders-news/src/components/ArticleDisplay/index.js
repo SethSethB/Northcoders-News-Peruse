@@ -10,7 +10,7 @@ import Loading from "../Loading";
 class ArticleDisplay extends Component {
   state = {
     currentTopic: "ALL",
-    currentSort: "",
+    currentSort: "title",
     articles: []
   };
 

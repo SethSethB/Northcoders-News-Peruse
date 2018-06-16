@@ -1,25 +1,27 @@
 import React from "react";
-import { Card, Col } from "react-materialize";
+import { Card, Col, Chip } from "react-materialize";
 import { Link } from "react-router-dom";
 
-const ArticlePreview = ({ article }) => {
+const ArticlePreview = ({
+  article: { _id, title, created_by, votes, comments, body }
+}) => {
   return (
-    <Col key={article._id} m={3} s={4}>
-      <Link key={article._id} to={`/articles/${article._id}`}>
+    <Col key={_id} m={3} s={4}>
+      <Link key={_id} to={`/articles/${_id}`}>
         <Card
-          key={article._id}
+          key={_id}
           className="red accent-4"
           textClassName="white-text"
-          title={article.title}
-          actions={[
-            <p key={article._id + 1}>
-              CREATED BY: {article.created_by.username}
-            </p>,
-            <p key={article._id + 2}>VOTES: {article.votes}</p>,
-            <p key={article._id + 3}>COMMENTS: {article.comments} </p>
-          ]}
+          title={title}
         >
-          {`${article.body.slice(0, 200)}...`}
+          <p key={_id + 1}>VOTES: {votes}</p>
+          <p key={_id + 2}>COMMENTS: {comments} </p>
+          <Chip key={_id + 3}>
+            <img src={created_by.avatar_url} alt="avatar" />
+            {created_by.username}
+          </Chip>
+          <br />
+          {body}
         </Card>
       </Link>
     </Col>

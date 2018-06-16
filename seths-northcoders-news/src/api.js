@@ -13,15 +13,22 @@ export const fetchArticles = async () => {
   return articles;
 };
 
-export const fetchUsers = async () => {
-  const users = await axios.get(`${url}/users`);
-
-  return users;
+export const fetchArticlesByTopic = async currentTopic => {
+  const articles = await axios.get(
+    `${url}/topics/${currentTopic.toLowerCase()}/articles`
+  );
+  return articles;
 };
 
 export const fetchArticle = async id => {
   const articles = await axios.get(`${url}/articles/${id}`);
   return articles;
+};
+
+export const fetchUsers = async () => {
+  const users = await axios.get(`${url}/users`);
+
+  return users;
 };
 
 export const fetchComments = async id => {
@@ -50,13 +57,6 @@ export const postComment = (comment, articleID, postingUsername) => {
     comment,
     postingUsername
   });
-};
-
-export const fetchArticlesByTopic = async currentTopic => {
-  const articles = await axios.get(
-    `${url}/topics/${currentTopic.toLowerCase()}/articles`
-  );
-  return articles;
 };
 
 export const deleteCommentFromDB = comment_id => {
