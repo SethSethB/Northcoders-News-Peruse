@@ -24,7 +24,7 @@ const ArticlePreview = ({
         >
           <p key={_id + 1}>VOTES: {votes}</p>
           <p key={_id + 2}>COMMENTS: {comments} </p>
-          <UserChip key={_id + 3} username={username} avatar_url={avatar_url} />
+
           <br />
           {body}
         </Card>

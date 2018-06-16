@@ -16,12 +16,7 @@ class People extends React.Component {
   };
 
   componentDidMount = async () => {
-    const {
-      loggedIn: { username: loggedInUsername },
-      match
-    } = this.props;
-
-    const selectedUser = match.params.username;
+    const selectedUser = this.props.match.params.username;
 
     const {
       data: { users }

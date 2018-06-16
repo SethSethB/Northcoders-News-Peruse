@@ -7,7 +7,7 @@ const Nav = ({ loggedIn: { avatar_url, username }, toggleLogin }) => {
   return (
     <Navbar className="red accent-4" left>
       <li>
-        <NavLink className="no-hover" to="/">
+        <NavLink className="no-hover" to="/peruse/ALL">
           <p>PERUSE</p>
         </NavLink>
       </li>

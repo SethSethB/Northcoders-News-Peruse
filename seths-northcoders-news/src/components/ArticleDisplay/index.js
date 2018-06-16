@@ -11,13 +11,13 @@ import Loading from "../Loading";
 
 class ArticleDisplay extends Component {
   state = {
-    currentTopic: "ALL",
     currentSort: "title",
     articles: []
   };
 
   componentDidMount = async () => {
-    const { currentTopic } = this.state;
+    const currentTopic = this.props.match.params.topic;
+
     const {
       data: { articles }
     } =
@@ -28,9 +28,9 @@ class ArticleDisplay extends Component {
     this.setState({ articles });
   };
 
-  componentDidUpdate = async (prevProps, prevState) => {
-    const { currentTopic } = this.state;
-    if (prevState.currentTopic !== currentTopic) {
+  componentDidUpdate = async prevProps => {
+    const currentTopic = this.props.match.params.topic;
+    if (prevProps.match.params.topic !== currentTopic) {
       const data =
         currentTopic === "ALL"
           ? await api.fetchArticles()
@@ -41,8 +41,8 @@ class ArticleDisplay extends Component {
   };
 
   render() {
-    const { loggedIn, availableTopics } = this.props;
-    const { articles, currentTopic, currentSort } = this.state;
+    const { availableTopics } = this.props;
+    const { articles, currentSort } = this.state;
 
     articles.sort((a, b) => {
       if (currentSort === "title") {
@@ -54,11 +54,6 @@ class ArticleDisplay extends Component {
         if (b[currentSort] > a[currentSort]) return 1;
         return 0;
       }
-    });
-
-    const selectedArticles = articles.filter(article => {
-      if (currentTopic === "ALL") return true;
-      return article.belongs_to === currentTopic;
     });
 
     return !articles.length ? (
@@ -83,7 +78,7 @@ class ArticleDisplay extends Component {
           useKeyboardArrows={true}
           infiniteLoop={true}
         >
-          {selectedArticles.map(article => (
+          {articles.map(article => (
             <ArticlePreview key={article._id} article={article} />
           ))}
         </Carousel>
@@ -92,9 +87,7 @@ class ArticleDisplay extends Component {
   }
 
   handleTopicPick = ({ target: { value } }) => {
-    this.setState({
-      currentTopic: value
-    });
+    this.props.history.push(`/peruse/${value}`);
   };
 
   handleSort = ({ target: { value } }) => {

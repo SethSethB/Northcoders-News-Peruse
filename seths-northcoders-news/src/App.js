@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import "./App.css";
 import Nav from "./components/Nav";
 import ArticleDisplay from "./components/ArticleDisplay";
+import WelcomePage from "./components/WelcomePage";
 import PostArticle from "./components/PostArticle";
 import Article from "./components/Article";
 import People from "./components/People";
@@ -40,9 +41,12 @@ class App extends Component {
     ) : (
       <div>
         <Nav loggedIn={loggedIn} toggleLogin={this.toggleLogin} />
+
+        <Route exact path="/" component={WelcomePage} />
+
         <Route
           exact
-          path="/"
+          path="/peruse/:topic"
           render={props => (
             <ArticleDisplay
               {...props}
@@ -51,6 +55,7 @@ class App extends Component {
             />
           )}
         />
+
         <Route
           path="/post"
           render={props => (
