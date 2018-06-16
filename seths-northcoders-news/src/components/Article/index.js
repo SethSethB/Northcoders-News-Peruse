@@ -1,9 +1,10 @@
 import React from "react";
 import * as api from "../../api";
-
+import { Link } from "react-router-dom";
 import Loading from "../Loading";
 
 import CommentList from "../CommentList";
+import UserChip from "../UserChip";
 import { Button } from "react-materialize";
 
 class Article extends React.Component {
@@ -37,6 +38,12 @@ class Article extends React.Component {
       <div>
         <h1 className="cyan lighten-1">{article.title}</h1>
         <h4>{article.belongs_to}</h4>
+        <Link to="/">
+          <UserChip
+            username={article.created_by.username}
+            avatar_url={article.created_by.avatar_url}
+          />
+        </Link>
         <article>{article.body}</article>
 
         <h3>
