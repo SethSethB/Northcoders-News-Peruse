@@ -53,6 +53,7 @@ class CommentList extends React.Component {
   };
 
   postComment = comment => {
+    if (!comment) return null;
     const { articleId } = this.props;
     const { username } = this.props;
     api.postComment(comment, articleId, username).then(({ data }) => {

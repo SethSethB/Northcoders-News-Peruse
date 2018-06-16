@@ -62,3 +62,7 @@ export const postComment = (comment, articleID, postingUsername) => {
 export const deleteCommentFromDB = comment_id => {
   return axios.delete(`${url}/comments/${comment_id}/`);
 };
+
+export const fetchUser = username => {
+  return axios.get(`${url}/users/${username}`);
+};

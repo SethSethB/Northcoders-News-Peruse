@@ -33,14 +33,14 @@ const Nav = ({ loggedIn: { avatar_url, username }, toggleLogin }) => {
           }
         >
           <form onSubmit={toggleLogin}>
-            <Input
-              key={1}
-              s={2}
-              label="Username"
-              type="textarea"
-              id="username"
-              defaultValue="happyamy2016"
-            />
+            <Input s={3} type="select" label="USERNAME" id="username">
+              <option value="cooljmessy">cooljmessy</option>
+              <option value="grumpy19">grumpy19</option>
+              <option value="happyamy2016">happyamy2016</option>
+              <option value="jessjelly">jessjelly</option>
+              <option value="tickle122">tickle122</option>
+              <option value="weegembump">weegembump</option>
+            </Input>
 
             <Button type="submit">LOGIN</Button>
           </form>

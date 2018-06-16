@@ -18,7 +18,18 @@ class App extends Component {
   };
 
   componentDidMount = async () => {
-    this.updateTopics();
+    const loggedIn = localStorage.getItem("loggedIn");
+    const topics = await this.updateTopics();
+
+    loggedIn
+      ? this.setState({
+          availableTopics: topics,
+          loggedIn: JSON.parse(loggedIn)
+        })
+      : this.setState({
+          availableTopics: topics,
+          loggedIn: guestUser
+        });
   };
 
   render() {
@@ -89,7 +100,13 @@ class App extends Component {
     api
       .postArticle(topicName, currentTitle, currentText, username)
       .then(res => {
-        if (currentTopic === "New Topic") this.updateTopics();
+        if (currentTopic === "New Topic") {
+          this.updateTopics().then(availableTopics => {
+            this.setState({
+              availableTopics
+            });
+          });
+        }
         this.props.history.push(`/articles/${res.data._id}`);
       });
   };
@@ -98,25 +115,14 @@ class App extends Component {
     const {
       data: { topics }
     } = await api.fetchTopics();
-    const loggedIn = localStorage.getItem("loggedIn");
 
-    loggedIn
-      ? this.setState({
-          availableTopics: topics,
-          loggedIn: JSON.parse(loggedIn)
-        })
-      : this.setState({
-          availableTopics: topics,
-          loggedIn: guestUser
-        });
+    return topics;
   };
 
   toggleLogin = e => {
     e.preventDefault();
-
     if (this.state.loggedIn.username !== "guest") {
       localStorage.setItem("loggedIn", JSON.stringify(guestUser));
-
       return this.setState({
         loggedIn: guestUser
       });
@@ -124,23 +130,12 @@ class App extends Component {
 
     const username = e.target.username.value;
 
-    localStorage.setItem(
-      "loggedIn",
-      JSON.stringify({
-        username: "happyamy2016",
-        name: "Amy Happy",
-        avatar_url:
-          "http://vignette1.wikia.nocookie.net/mrmen/images/7/7f/Mr_Happy.jpg/revision/latest?cb=20140102171729"
-      })
-    );
+    api.fetchUser(username).then(({ data }) => {
+      localStorage.setItem("loggedIn", JSON.stringify(data));
 
-    this.setState({
-      loggedIn: {
-        username: "happyamy2016",
-        name: "Amy Happy",
-        avatar_url:
-          "http://vignette1.wikia.nocookie.net/mrmen/images/7/7f/Mr_Happy.jpg/revision/latest?cb=20140102171729"
-      }
+      this.setState({
+        loggedIn: data
+      });
     });
   };
 }
