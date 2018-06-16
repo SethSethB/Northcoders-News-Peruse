@@ -2,8 +2,7 @@ import React from "react";
 import * as api from "../../api";
 import { Link } from "react-router-dom";
 import Loading from "../Loading";
-import { Carousel } from "react-responsive-carousel";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+import UserPick from "../UserPick";
 
 class People extends React.Component {
   state = {
@@ -20,20 +19,17 @@ class People extends React.Component {
 
   render() {
     const { users } = this.state;
-    const avatars = users.map(user => {
-      return (
-        <div>
-          <img src={user.avatar_url} />
-          <Link to="/" className="legend">
-            {user.username}
-          </Link>
-        </div>
-      );
-    });
+    const {
+      loggedIn: { username }
+    } = this.props;
+    const otherUsers = users.filter(user => user.username !== username);
+
     return !users.length ? (
       <Loading />
     ) : (
-      <Carousel autoPlay>{avatars}</Carousel>
+      <div>
+        <UserPick users={otherUsers} defaultOption={username} />
+      </div>
     );
   }
 }

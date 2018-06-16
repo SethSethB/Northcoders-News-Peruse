@@ -14,5 +14,9 @@
 }
 
 .chip {
-  background: paleturquoise;
+  background: rgb(175, 238, 238);
+}
+
+.chip:hover {
+  background: rgb(236, 220, 174);
 }
