@@ -5,7 +5,7 @@ import Nav from "./components/Nav";
 import ArticleDisplay from "./components/ArticleDisplay";
 import PostArticle from "./components/PostArticle";
 import Article from "./components/Article";
-import UserPick from "./components/UserPick";
+import People from "./components/People";
 import * as api from "./api";
 import Loading from "./components/Loading";
 import guestUser from "./data";
@@ -65,7 +65,7 @@ class App extends Component {
 
         <Route
           path="/people"
-          render={props => <UserPick {...props} loggedIn={loggedIn} />}
+          render={props => <People {...props} loggedIn={loggedIn} />}
         />
 
         <Route
