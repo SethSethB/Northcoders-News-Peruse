@@ -18,11 +18,13 @@ class ArticleDisplay extends Component {
 
   componentDidMount = async () => {
     const { currentTopic } = this.state;
-    const data =
+    const {
+      data: { articles }
+    } =
       currentTopic === "ALL"
         ? await api.fetchArticles()
         : await api.fetchArticlesByTopic(currentTopic);
-    const articles = [...data.data.articles];
+
     this.setState({ articles });
   };
 

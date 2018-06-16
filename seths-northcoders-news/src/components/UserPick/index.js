@@ -1,7 +1,7 @@
 import React from "react";
 import { Input } from "react-materialize";
 
-const UserPick = ({ users, defaultOption }) => {
+const UserPick = ({ users, defaultOption, handleUserPick }) => {
   users.sort((a, b) => {
     if (a.username < b.username) return -1;
     if (a.username > b.username) return 1;
@@ -13,7 +13,7 @@ const UserPick = ({ users, defaultOption }) => {
       type="select"
       label="SELECT USER"
       defaultValue={defaultOption}
-      // onChange={handleTopicPick}
+      onChange={handleUserPick}
     >
       <option value={defaultOption}>{defaultOption}</option>
       {users.map(user => {

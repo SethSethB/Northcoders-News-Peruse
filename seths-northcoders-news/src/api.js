@@ -20,6 +20,11 @@ export const fetchArticlesByTopic = async currentTopic => {
   return articles;
 };
 
+export const fetchArticlesByUsername = async username => {
+  const articles = await axios.get(`${url}/users/${username}/articles`);
+  return articles;
+};
+
 export const fetchArticle = async id => {
   const articles = await axios.get(`${url}/articles/${id}`);
   return articles;
