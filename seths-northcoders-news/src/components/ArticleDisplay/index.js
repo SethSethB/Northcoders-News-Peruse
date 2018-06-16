@@ -58,7 +58,7 @@ class ArticleDisplay extends Component {
       if (currentTopic === "ALL") return true;
       return article.belongs_to === currentTopic;
     });
-    console.log(selectedArticles);
+
     return !articles.length ? (
       <Loading />
     ) : (
