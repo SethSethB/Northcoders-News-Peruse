@@ -128,7 +128,7 @@ textarea.materialize-textarea {
 }
 
 h1 {
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   text-align: center;
   background-color: #26c6da;
   width: auto;
@@ -183,6 +183,17 @@ nav {
   width: 100%;
 }
 
+.commentHeader {
+  font-size: 20px;
+  width: 100%;
+  margin: auto;
+}
+
+article {
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
 .commentBody {
   margin-bottom: 2px;
 }
@@ -205,19 +216,8 @@ nav {
 .article-title {
   margin-bottom: 0px;
 }
-/* 
-.input .select-dropdown active {
-  color: #26c6da;
-} */
 
-/* amber lighten-1  */
-/* #ffca28  */
-
-/* cyan lighten-1 */
-/* #26c6da  */
-
-/* light-blue darken-4
-#01579b */
-
-/* indigo lighten-1
-#5c6bc0  */
+.preview-icon {
+  padding-left: 0.8em;
+  padding-right: 0.8em;
+}

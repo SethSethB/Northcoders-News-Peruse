@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Col } from "react-materialize";
+import { Card, Col, Icon } from "react-materialize";
 import { Link } from "react-router-dom";
 import UserChip from "../UserChip";
 
@@ -18,8 +18,15 @@ const ArticlePreview = ({
       <Link key={_id} to={`/articles/${_id}`}>
         <Card key={_id} textClassName="black-text" title={title}>
           {" "}
-          <p key={_id + 1}>VOTES: {votes}</p>
-          <p key={_id + 2}>COMMENTS: {comments} </p>
+          <span className="preview-icon" key={_id + 1}>
+            <Icon>thumbs_up_down</Icon>
+            {votes}
+          </span>
+          <span className="preview-icon" key={_id + 2}>
+            <Icon>insert_comment</Icon>
+            {comments}
+          </span>
+          <br />
           {body}
         </Card>
       </Link>

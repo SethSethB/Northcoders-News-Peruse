@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Icon } from "react-materialize";
+import { Button } from "react-materialize";
 
 const SortButton = ({ handleSort }) => {
   return (

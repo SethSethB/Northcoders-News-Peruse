@@ -3,7 +3,7 @@ import { Route, Link } from "react-router-dom";
 import "./App.css";
 import Nav from "./components/Nav";
 import ArticleDisplay from "./components/ArticleDisplay";
-import WelcomePage from "./components/WelcomePage";
+import RedirectPage from "./components/RedirectPage";
 import PostArticle from "./components/PostArticle";
 import Article from "./components/Article";
 import People from "./components/People";
@@ -44,7 +44,7 @@ class App extends Component {
 
         <Nav loggedIn={loggedIn} toggleLogin={this.toggleLogin} />
 
-        <Route exact path="/" component={WelcomePage} />
+        <Route exact path="/" component={RedirectPage} />
 
         <Route
           path="/peruse/:topic"
@@ -57,7 +57,7 @@ class App extends Component {
           )}
         />
 
-        <Route exact path="/peruse/" component={WelcomePage} />
+        <Route exact path="/peruse/" component={RedirectPage} />
 
         <Route
           path="/post"
