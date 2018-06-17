@@ -1,23 +1,12 @@
 import React from "react";
 import { Card, Col, Icon } from "react-materialize";
 import { Link } from "react-router-dom";
-import UserChip from "../UserChip";
 
-const ArticlePreview = ({
-  article: {
-    _id,
-    title,
-    created_by: { avatar_url, username },
-    votes,
-    comments,
-    body
-  }
-}) => {
+const ArticlePreview = ({ article: { _id, title, votes, comments, body } }) => {
   return (
     <Col key={_id} m={3} s={4}>
       <Link key={_id} to={`/articles/${_id}`}>
         <Card key={_id} textClassName="black-text" title={title}>
-          {" "}
           <span className="preview-icon" key={_id + 1}>
             <Icon>thumbs_up_down</Icon>
             {votes}

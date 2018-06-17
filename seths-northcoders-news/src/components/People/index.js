@@ -17,14 +17,18 @@ class People extends React.Component {
   componentDidMount = async () => {
     const selectedUser = this.props.match.params.username;
 
-    const {
-      data: { users }
-    } = await api.fetchUsers();
+    try {
+      const {
+        data: { users }
+      } = await api.fetchUsers();
 
-    const {
-      data: { articles }
-    } = await api.fetchArticlesByUsername(selectedUser);
-    this.setState({ users, articles });
+      const {
+        data: { articles }
+      } = await api.fetchArticlesByUsername(selectedUser);
+      this.setState({ users, articles });
+    } catch (err) {
+      if (err.response.status === 404 || 400) this.props.history.push("/404");
+    }
   };
 
   componentDidUpdate = async prevProps => {
@@ -40,13 +44,8 @@ class People extends React.Component {
 
   render() {
     const { users, articles, currentSort } = this.state;
-    const {
-      loggedIn: { username: loggedInUsername }
-    } = this.props;
 
-    const otherUsers = users.filter(
-      user => user.username !== loggedInUsername && user.username !== "guest"
-    );
+    const selectedUser = this.props.match.params.username;
 
     articles.sort((a, b) => {
       if (currentSort === "title") {
@@ -66,8 +65,8 @@ class People extends React.Component {
       <div>
         <Row>
           <UserPick
-            users={otherUsers}
-            defaultOption={loggedInUsername}
+            users={users}
+            defaultOption={selectedUser}
             handleUserPick={this.handleUserPick}
           />
         </Row>

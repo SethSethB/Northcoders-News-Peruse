@@ -1,8 +1,8 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
 
-function WelcomePage(props) {
+const RedirectPage = () => {
   return <Redirect to="/peruse/ALL" />;
-}
+};
 
-export default WelcomePage;
+export default RedirectPage;

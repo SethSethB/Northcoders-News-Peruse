@@ -11,29 +11,15 @@ class UserPick extends React.Component {
       return 0;
     });
     return (
-      <div>
-        {defaultOption === "guest" ? (
-          <Input
-            s={3}
-            type="select"
-            label="SELECT USER"
-            onChange={handleUserPick}
-          >
-            {this.userOptions(users)}
-          </Input>
-        ) : (
-          <Input
-            s={3}
-            type="select"
-            label="SELECT USER"
-            defaultValue={defaultOption}
-            onChange={handleUserPick}
-          >
-            <option value={defaultOption}>{defaultOption}</option>
-            {this.userOptions(users)}
-          </Input>
-        )}
-      </div>
+      <Input
+        s={3}
+        type="select"
+        label="SELECT USER"
+        defaultValue={defaultOption}
+        onChange={handleUserPick}
+      >
+        {this.userOptions(users)}
+      </Input>
     );
   }
 

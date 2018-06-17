@@ -42,7 +42,7 @@ const Nav = ({ loggedIn: { avatar_url, username }, toggleLogin }) => {
               <option value="weegembump">weegembump</option>
             </Input>
 
-            <Button className="amber lighten-1" type="submit">
+            <Button className="amber lighten-1 black-text " type="submit">
               LOGIN
             </Button>
           </form>

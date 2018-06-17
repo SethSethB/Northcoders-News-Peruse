@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, Link } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import "./App.css";
 import Nav from "./components/Nav";
 import ArticleDisplay from "./components/ArticleDisplay";
@@ -7,6 +7,7 @@ import RedirectPage from "./components/RedirectPage";
 import PostArticle from "./components/PostArticle";
 import Article from "./components/Article";
 import People from "./components/People";
+import PageNotFound from "./components/PageNotFound";
 import * as api from "./api";
 import Loading from "./components/Loading";
 import guestUser from "./data";
@@ -40,48 +41,52 @@ class App extends Component {
       <Loading />
     ) : (
       <div>
-        <h1>NEWS PERUSE</h1>
+        <h1>NC NEWS PERUSE</h1>
 
         <Nav loggedIn={loggedIn} toggleLogin={this.toggleLogin} />
+        <Switch>
+          <Route exact path="/" component={RedirectPage} />
 
-        <Route exact path="/" component={RedirectPage} />
+          <Route
+            path="/peruse/:topic"
+            render={props => (
+              <ArticleDisplay
+                {...props}
+                loggedIn={loggedIn}
+                availableTopics={availableTopics}
+              />
+            )}
+          />
 
-        <Route
-          path="/peruse/:topic"
-          render={props => (
-            <ArticleDisplay
-              {...props}
-              loggedIn={loggedIn}
-              availableTopics={availableTopics}
-            />
-          )}
-        />
+          <Route exact path="/peruse/" component={RedirectPage} />
+          <Route exact path="/articles/" component={RedirectPage} />
 
-        <Route exact path="/peruse/" component={RedirectPage} />
+          <Route
+            path="/post"
+            render={props => (
+              <PostArticle
+                {...props}
+                loggedIn={loggedIn}
+                availableTopics={availableTopics}
+                postArticle={this.postArticle}
+              />
+            )}
+          />
 
-        <Route
-          path="/post"
-          render={props => (
-            <PostArticle
-              {...props}
-              loggedIn={loggedIn}
-              availableTopics={availableTopics}
-              postArticle={this.postArticle}
-            />
-          )}
-        />
+          <Route
+            path="/people/:username"
+            render={props => <People {...props} loggedIn={loggedIn} />}
+          />
 
-        <Route
-          path="/people/:username"
-          render={props => <People {...props} loggedIn={loggedIn} />}
-        />
+          <Route
+            path="/articles/:articleId"
+            render={props => (
+              <Article {...props} loggedIn={this.state.loggedIn} />
+            )}
+          />
 
-        <Route
-          path="/articles/:articleId"
-          render={props => (
-            <Article {...props} loggedIn={this.state.loggedIn} />
-          )}
-        />
+          <Route path="/" render={props => <PageNotFound {...props} />} />
+        </Switch>
       </div>
     );
   }

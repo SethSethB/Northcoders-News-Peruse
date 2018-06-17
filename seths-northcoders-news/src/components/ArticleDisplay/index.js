@@ -17,14 +17,18 @@ class ArticleDisplay extends Component {
   componentDidMount = async () => {
     const currentTopic = this.props.match.params.topic;
 
-    const {
-      data: { articles }
-    } =
-      currentTopic === "ALL"
-        ? await api.fetchArticles()
-        : await api.fetchArticlesByTopic(currentTopic);
+    try {
+      const {
+        data: { articles }
+      } =
+        currentTopic === "ALL"
+          ? await api.fetchArticles()
+          : await api.fetchArticlesByTopic(currentTopic);
 
-    this.setState({ articles });
+      this.setState({ articles });
+    } catch (err) {
+      if (err.response.status === 404 || 400) this.props.history.push("/404");
+    }
   };
 
   componentDidUpdate = async prevProps => {

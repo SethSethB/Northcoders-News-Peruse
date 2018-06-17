@@ -12,11 +12,16 @@ class Article extends React.Component {
 
   componentDidMount = async () => {
     const articleId = this.props.match.params.articleId;
-    const articleRes = await api.fetchArticle(articleId);
 
-    this.setState({
-      article: articleRes.data
-    });
+    try {
+      const articleRes = await api.fetchArticle(articleId);
+
+      this.setState({
+        article: articleRes.data
+      });
+    } catch (err) {
+      if (err.response.status === 404 || 400) this.props.history.push("/404");
+    }
   };
 
   render() {
