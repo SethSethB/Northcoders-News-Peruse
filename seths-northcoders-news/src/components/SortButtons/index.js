@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "react-materialize";
+import { Button, Icon } from "react-materialize";
 
 const SortButton = ({ handleSort }) => {
   return (
@@ -9,26 +9,25 @@ const SortButton = ({ handleSort }) => {
         className="amber lighten-1 black-text sort"
         waves="light"
         value="title"
-        onClick={handleSort}
-      >
-        Title
-      </Button>
+        onClick={() => handleSort("title")}
+        icon="text_rotation_none"
+      />
+
       <Button
         className="amber lighten-1 black-text sort"
         waves="light"
         value="votes"
-        onClick={handleSort}
-      >
-        Popularity
-      </Button>
+        onClick={() => handleSort("votes")}
+        icon="thumbs_up_down"
+      />
+
       <Button
         className="amber lighten-1 black-text sort"
         waves="light"
         value="comments"
-        onClick={handleSort}
-      >
-        Most Commented
-      </Button>
+        onClick={() => handleSort("comments")}
+        icon="insert_comment"
+      />
     </div>
   );
 };

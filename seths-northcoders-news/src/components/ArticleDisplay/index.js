@@ -91,9 +91,10 @@ class ArticleDisplay extends Component {
     this.props.history.push(`/peruse/${value}`);
   };
 
-  handleSort = ({ target: { value } }) => {
+  handleSort = currentSort => {
+    console.log(currentSort);
     this.setState({
-      currentSort: value
+      currentSort
     });
   };
 }

@@ -39,7 +39,7 @@ class Article extends React.Component {
         <div className="whole-main">
           <div className="cyan lighten-1 article-heading">
             <h2>{article.title}</h2>
-            <Link to="/">
+            <Link to={`/people/${article.created_by.username}`}>
               <UserChip
                 className="article-chip"
                 username={article.created_by.username}

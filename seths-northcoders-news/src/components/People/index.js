@@ -95,9 +95,9 @@ class People extends React.Component {
     this.props.history.push(`/people/${value}`);
   };
 
-  handleSort = ({ target: { value } }) => {
+  handleSort = currentSort => {
     this.setState({
-      currentSort: value
+      currentSort
     });
   };
 }
