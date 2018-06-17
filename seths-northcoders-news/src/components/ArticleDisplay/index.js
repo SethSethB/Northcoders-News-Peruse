@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 import TopicPick from "../TopicPick";
 import SortButtons from "../SortButtons";
-import ArticlePreview from "../ArticlePreview";
+
 import { Row } from "react-materialize";
 import * as api from "../../api";
-import { Carousel } from "react-responsive-carousel";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 import Loading from "../Loading";
+import ArticleCarousel from "../ArticleCarousel";
 
 class ArticleDisplay extends Component {
   state = {
@@ -73,20 +72,7 @@ class ArticleDisplay extends Component {
             <SortButtons handleSort={this.handleSort} />
           </Row>
 
-          <Carousel
-            centerMode
-            width="100%"
-            showThumbs={false}
-            showStatus={false}
-            showIndicators={false}
-            autoPlay
-            useKeyboardArrows={true}
-            infiniteLoop={true}
-          >
-            {articles.map(article => (
-              <ArticlePreview key={article._id} article={article} />
-            ))}
-          </Carousel>
+          <ArticleCarousel articles={articles} />
         </div>
       </div>
     );

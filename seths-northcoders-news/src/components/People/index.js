@@ -1,12 +1,11 @@
 import React from "react";
 import * as api from "../../api";
-import { Link } from "react-router-dom";
 import Loading from "../Loading";
 import UserPick from "../UserPick";
-import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import ArticlePreview from "../ArticlePreview";
+import ArticleCarousel from "../ArticleCarousel";
 import SortButtons from "../SortButtons";
+import { Row } from "react-materialize";
 
 class People extends React.Component {
   state = {
@@ -65,28 +64,24 @@ class People extends React.Component {
       <Loading />
     ) : (
       <div>
-        <UserPick
-          users={otherUsers}
-          defaultOption={loggedInUsername}
-          handleUserPick={this.handleUserPick}
-        />
-        <SortButtons handleSort={this.handleSort} />
-        {articles.length ? (
-          <Carousel
-            width="70%"
-            showThumbs={false}
-            showIndicators={false}
-            autoPlay
-            useKeyboardArrows={true}
-            infiniteLoop={true}
-          >
-            {articles.map(article => (
-              <ArticlePreview key={article._id} article={article} />
-            ))}
-          </Carousel>
-        ) : (
-          <p>No Articles posted by this user</p>
-        )}
+        <Row>
+          <UserPick
+            users={otherUsers}
+            defaultOption={loggedInUsername}
+            handleUserPick={this.handleUserPick}
+          />
+        </Row>
+
+        <div className="preview-display">
+          <Row>
+            <SortButtons handleSort={this.handleSort} />
+          </Row>
+          {articles.length ? (
+            <ArticleCarousel articles={articles} />
+          ) : (
+            <p>No Articles posted by this user</p>
+          )}
+        </div>
       </div>
     );
   }

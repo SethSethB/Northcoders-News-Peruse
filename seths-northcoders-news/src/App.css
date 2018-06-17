@@ -125,7 +125,7 @@ h1 {
   background-color: #26c6da;
   width: auto;
   margin: 0;
-  padding-top: 1em;
+  padding-top: 0.8em;
   padding-bottom: 20px;
 }
 
@@ -166,13 +166,17 @@ nav {
   border-radius: 5px;
 }
 
-.carousel-slider {
-  background-color: yellow;
+.preview-display {
+  width: 70%;
+  margin: auto;
 }
 
-.preview-display {
-  width: 80%;
-  margin: auto;
+.card-content {
+  width: 100%;
+}
+
+.commentBody {
+  margin-bottom: 2px;
 }
 /* 
 .input .select-dropdown active {

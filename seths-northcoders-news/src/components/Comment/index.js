@@ -18,7 +18,9 @@ class Comment extends React.Component {
 
     return (
       <div key={key} className="comment-container">
-        <p key={key + "1"}>{body}</p>
+        <p className={"commentBody"} key={key + "1"}>
+          {body}
+        </p>
         <label key={key + "2"}>POSTED BY {created_by.username}</label>
         <label key={key + "3"}>
           {moment(created_at).format("MMMM Do YYYY, h:mm:ss a")}
