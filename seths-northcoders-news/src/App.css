@@ -65,7 +65,8 @@ ul.dropdown-content.select-dropdown li span {
 }
 
 label {
-  color: #01579b;
+  color: #26c6da;
+  display: block;
 }
 
 .material-icons {
@@ -91,11 +92,7 @@ textarea.materialize-textarea {
 .article-page {
   margin: 3em;
   border: black solid 2px;
-  border-radius: 1em;
-  min-width: 500px;
-}
-
-.whole-main {
+  border-radius: 0.9em;
   min-width: 500px;
 }
 
@@ -110,10 +107,20 @@ textarea.materialize-textarea {
   display: inline-block;
 }
 
+.comment-vote {
+  display: inline-block;
+}
+
 .commentHeader {
   padding: 0.3em;
   border-top: black solid 2px;
   border-bottom: black solid 2px;
+}
+
+.comment-container {
+  margin: 2em;
+  padding: 0.5em;
+  margin-bottom: 1em;
 }
 
 .sort {
@@ -156,9 +163,6 @@ ul #nav-mobile.side.nav {
   border-radius: 1em;
 }
 
-/* button {
-  color: black;
-} */
 /* amber lighten-1  */
 /* #ffca28  */
 

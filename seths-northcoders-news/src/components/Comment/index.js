@@ -17,36 +17,37 @@ class Comment extends React.Component {
       : created_by.username === username && username !== "guest";
 
     return (
-      <div key={key}>
+      <div key={key} className="comment-container">
         <p key={key + "1"}>{body}</p>
-        <label key={key + "2"}>
-          POSTED BY {created_by.username} AT{" "}
+        <label key={key + "2"}>POSTED BY {created_by.username}</label>
+        <label key={key + "3"}>
           {moment(created_at).format("MMMM Do YYYY, h:mm:ss a")}
         </label>
-        {disabled && (
-          <DeleteButton comment_id={_id} deleteComment={deleteComment} />
-        )}
-        <br />
-        <label key={key + "3"}>VOTES {votes}</label>
 
-        <Button
-          onClick={() => handleCommentVote("up", _id)}
-          floating
-          small="true"
-          className="amber lighten-1"
-          waves="light"
-          icon="thumb_up"
-          disabled={disabled}
-        />
-        <Button
-          onClick={() => handleCommentVote("down", _id)}
-          floating
-          small="true"
-          className="amber lighten-1"
-          waves="light"
-          icon="thumb_down"
-          disabled={disabled}
-        />
+        <span className="comment-votes">
+          <Button
+            onClick={() => handleCommentVote("up", _id)}
+            floating
+            small="true"
+            className="amber lighten-1"
+            waves="light"
+            icon="thumb_up"
+            disabled={disabled}
+          />
+          <p className="vote-count">{votes}</p>
+          <Button
+            onClick={() => handleCommentVote("down", _id)}
+            floating
+            small="true"
+            className="amber lighten-1"
+            waves="light"
+            icon="thumb_down"
+            disabled={disabled}
+          />
+          {disabled && (
+            <DeleteButton comment_id={_id} deleteComment={deleteComment} />
+          )}
+        </span>
       </div>
     );
   }

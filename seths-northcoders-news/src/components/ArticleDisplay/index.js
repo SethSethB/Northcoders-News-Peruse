@@ -92,7 +92,6 @@ class ArticleDisplay extends Component {
   };
 
   handleSort = currentSort => {
-    console.log(currentSort);
     this.setState({
       currentSort
     });

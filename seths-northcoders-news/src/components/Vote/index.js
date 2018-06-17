@@ -7,7 +7,7 @@ function Vote({ handleVote, disabled, votes }) {
       <Button
         onClick={() => handleVote("up")}
         floating
-        small="true"
+        large
         className="amber lighten-1"
         waves="light"
         icon="thumb_up"
@@ -17,7 +17,7 @@ function Vote({ handleVote, disabled, votes }) {
       <Button
         onClick={() => handleVote("down")}
         floating
-        small="true"
+        large
         className="amber lighten-1"
         waves="light"
         icon="thumb_down"
