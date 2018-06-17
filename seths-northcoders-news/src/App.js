@@ -40,6 +40,7 @@ class App extends Component {
       <Loading />
     ) : (
       <div>
+        <h1>NEWS PERUSE</h1>
         <Nav loggedIn={loggedIn} toggleLogin={this.toggleLogin} />
 
         <Route exact path="/" component={WelcomePage} />

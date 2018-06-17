@@ -35,38 +35,44 @@ class Article extends React.Component {
     return !article.title ? (
       <Loading />
     ) : (
-      <div>
-        <h1 className="cyan lighten-1">{article.title}</h1>
-        <h4>{article.belongs_to}</h4>
-        <Link to="/">
-          <UserChip
-            username={article.created_by.username}
-            avatar_url={article.created_by.avatar_url}
-          />
-        </Link>
-        <article>{article.body}</article>
+      <div className="article-page">
+        <div className="whole-main">
+          <div className="cyan lighten-1 article-heading">
+            <h2>{article.title}</h2>
+            <h4>{article.belongs_to}</h4>
+            <Link to="/">
+              <UserChip
+                className="article-chip"
+                username={article.created_by.username}
+                avatar_url={article.created_by.avatar_url}
+              />
+            </Link>
+          </div>
 
-        <h3>
-          VOTES {article.votes}
-          <Button
-            onClick={() => this.handleVote("up")}
-            floating
-            large
-            className="red accent-4"
-            waves="light"
-            icon="thumb_up"
-            disabled={disabled}
-          />
-          <Button
-            onClick={() => this.handleVote("down")}
-            floating
-            large
-            className="red accent-4"
-            waves="light"
-            icon="thumb_down"
-            disabled={disabled}
-          />
-        </h3>
+          <article>{article.body}</article>
+
+          <h3 className="article-votes">
+            VOTES {article.votes}
+            <Button
+              onClick={() => this.handleVote("up")}
+              floating
+              large
+              className="amber lighten-1"
+              waves="light"
+              icon="thumb_up"
+              disabled={disabled}
+            />
+            <Button
+              onClick={() => this.handleVote("down")}
+              floating
+              large
+              className="amber lighten-1"
+              waves="light"
+              icon="thumb_down"
+              disabled={disabled}
+            />
+          </h3>
+        </div>
         <CommentList articleId={articleId} username={username} />
       </div>
     );

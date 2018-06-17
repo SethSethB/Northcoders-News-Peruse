@@ -18,7 +18,7 @@ const ArticlePreview = ({
       <Link key={_id} to={`/articles/${_id}`}>
         <Card
           key={_id}
-          className="red accent-4"
+          className="cyan lighten-1"
           textClassName="white-text"
           title={title}
         >

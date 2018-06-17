@@ -75,7 +75,7 @@ class PostArticle extends React.Component {
 
         <Button
           waves="light"
-          className="grey darken-4"
+          className="amber lighten-1"
           onClick={() =>
             postArticle(currentTopic, currentText, currentTitle, newTopicName)
           }

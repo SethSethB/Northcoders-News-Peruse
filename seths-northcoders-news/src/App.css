@@ -14,40 +14,116 @@
 }
 
 .chip {
-  background: rgb(175, 238, 238);
+  background: #ffca28;
+  color: black;
+}
+
+.btn-floating i {
+  color: black;
 }
 
 .chip:hover {
-  background: rgb(236, 220, 174);
+  background: #01579b;
 }
 
-/* .carousel .slide {
+.carousel .slide {
   background: #ad4b4b;
-} */
+}
 
 nav ul a:hover {
   background-color: rgba(255, 255, 255, 0);
-  color: yellow;
+  color: #01579b;
 }
 
 textarea.materialize-textarea:focus:not([readonly]) {
-  border-bottom: 1px solid rgba(245, 18, 196, 0.945);
+  border-bottom: 1px solid #01579b;
 
-  box-shadow: 0 1px 0 0 rgba(245, 18, 196, 0.945);
+  box-shadow: 0 1px 0 0 #01579b;
 }
 
 .wrapper input.select-dropdown:focus:not([readonly]) {
-  color: rgba(245, 18, 196, 0.945);
+  color: #01579b;
 }
 
 textarea.materialize-textarea:focus:not([readonly]) + label {
-  color: rgba(245, 18, 196, 0.945);
+  color: #01579b;
 }
 
 /* .input .select-dropdown active {
-  color: rgba(245, 18, 196, 0.945);
+  color: #01579b;
 } */
 
 ul.dropdown-content.select-dropdown li span {
-  color: rgba(245, 18, 196, 0.945);
+  color: #01579b;
 }
+
+.select-dropdown {
+  color: #01579b;
+}
+
+label {
+  color: #01579b;
+}
+
+.material-icons {
+  color: #01579b;
+}
+
+.article-chip {
+  color: #ffca28;
+}
+
+.input-field label {
+  color: #ffca28;
+}
+
+.select-wrapper input.select-dropdown {
+  border-bottom: 1px solid #01579b;
+}
+
+textarea.materialize-textarea {
+  border-bottom: 1px solid #01579b;
+}
+
+.article-page {
+  margin: 3em;
+  border: black solid 2px;
+  border-radius: 1em;
+  min-width: 500px;
+}
+
+.whole-main {
+  min-width: 500px;
+}
+
+.article-heading {
+  border-top-left-radius: 0.8em;
+  border-top-right-radius: 0.8em;
+  padding: 1em;
+  border-bottom: black solid 2px;
+}
+
+.article-votes {
+  padding: 10px;
+}
+
+.commentHeader {
+  border-top: black solid 2px;
+  border-bottom: black solid 2px;
+}
+
+.sort {
+  border-radius: 5px;
+  margin: 1em;
+}
+/* amber lighten-1  */
+/* #ffca28  */
+
+/* cyan lighten-1 */
+/* #26c6da  */
+
+/* light-blue darken-4
+#01579b */
+
+/* indigo lighten-1
+#5c6bc0  */

@@ -26,8 +26,8 @@ class CommentList extends React.Component {
 
     return (
       <div>
+        <h1 className="cyan lighten-1 commentHeader">COMMENTS</h1>
         <PostComment postComment={this.postComment} />
-        <h1 className="cyan lighten-1">COMMENTS</h1>
         {comments.map((comment, i) => (
           <Comment
             username={this.props.username}

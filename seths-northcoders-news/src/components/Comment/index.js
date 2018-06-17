@@ -33,7 +33,7 @@ class Comment extends React.Component {
           onClick={() => handleCommentVote("up", _id)}
           floating
           small="true"
-          className="red accent-4"
+          className="amber lighten-1"
           waves="light"
           icon="thumb_up"
           disabled={disabled}
@@ -42,7 +42,7 @@ class Comment extends React.Component {
           onClick={() => handleCommentVote("down", _id)}
           floating
           small="true"
-          className="red accent-4"
+          className="amber lighten-1"
           waves="light"
           icon="thumb_down"
           disabled={disabled}

@@ -5,7 +5,7 @@ import { Navbar, Button, Chip, Modal, Input } from "react-materialize";
 
 const Nav = ({ loggedIn: { avatar_url, username }, toggleLogin }) => {
   return (
-    <Navbar className="red accent-4" left>
+    <Navbar className="amber lighten-1 " left>
       <li>
         <NavLink className="no-hover" to="/peruse/ALL">
           <p>PERUSE</p>
@@ -42,7 +42,9 @@ const Nav = ({ loggedIn: { avatar_url, username }, toggleLogin }) => {
               <option value="weegembump">weegembump</option>
             </Input>
 
-            <Button type="submit">LOGIN</Button>
+            <Button className="amber lighten-1" type="submit">
+              LOGIN
+            </Button>
           </form>
         </Modal>
       ) : (
