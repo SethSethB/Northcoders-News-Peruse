@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Link } from "react-router-dom";
 import "./App.css";
 import Nav from "./components/Nav";
 import ArticleDisplay from "./components/ArticleDisplay";
@@ -41,6 +41,7 @@ class App extends Component {
     ) : (
       <div>
         <h1>NEWS PERUSE</h1>
+
         <Nav loggedIn={loggedIn} toggleLogin={this.toggleLogin} />
 
         <Route exact path="/" component={WelcomePage} />

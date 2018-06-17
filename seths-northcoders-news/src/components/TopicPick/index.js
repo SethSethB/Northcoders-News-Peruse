@@ -9,7 +9,7 @@ const TopicPick = ({ availableTopics, defaultOption, handleTopicPick }) => {
   });
   return (
     <Input
-      s={3}
+      s={4}
       type="select"
       label="SELECT TOPIC"
       defaultValue={defaultOption}

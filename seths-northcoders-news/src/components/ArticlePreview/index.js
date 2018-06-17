@@ -16,16 +16,10 @@ const ArticlePreview = ({
   return (
     <Col key={_id} m={3} s={4}>
       <Link key={_id} to={`/articles/${_id}`}>
-        <Card
-          key={_id}
-          className="cyan lighten-1"
-          textClassName="white-text"
-          title={title}
-        >
+        <Card key={_id} textClassName="black-text" title={title}>
+          {" "}
           <p key={_id + 1}>VOTES: {votes}</p>
           <p key={_id + 2}>COMMENTS: {comments} </p>
-
-          <br />
           {body}
         </Card>
       </Link>

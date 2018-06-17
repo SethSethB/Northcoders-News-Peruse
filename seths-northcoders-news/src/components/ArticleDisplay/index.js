@@ -68,21 +68,25 @@ class ArticleDisplay extends Component {
             handleTopicPick={this.handleTopicPick}
           />
         </Row>
-
-        <SortButtons handleSort={this.handleSort} />
-
-        <Carousel
-          width="70%"
-          showThumbs={false}
-          showIndicators={false}
-          autoPlay
-          useKeyboardArrows={true}
-          infiniteLoop={true}
-        >
-          {articles.map(article => (
-            <ArticlePreview key={article._id} article={article} />
-          ))}
-        </Carousel>
+        <Row>
+          <SortButtons handleSort={this.handleSort} />
+        </Row>
+        <div className="preview-display">
+          <Carousel
+            // showStatus={false}
+            centerMode
+            width="70%"
+            showThumbs={false}
+            showIndicators={false}
+            // autoPlay
+            useKeyboardArrows={true}
+            infiniteLoop={true}
+          >
+            {articles.map(article => (
+              <ArticlePreview key={article._id} article={article} />
+            ))}
+          </Carousel>
+        </div>
       </div>
     );
   }
