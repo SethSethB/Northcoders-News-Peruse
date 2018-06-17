@@ -26,7 +26,7 @@ class CommentList extends React.Component {
 
     return (
       <div>
-        <h1 className="cyan lighten-1 commentHeader">COMMENTS</h1>
+        <h2 className="cyan lighten-1 commentHeader">COMMENTS</h2>
         <PostComment postComment={this.postComment} />
         {comments.map((comment, i) => (
           <Comment

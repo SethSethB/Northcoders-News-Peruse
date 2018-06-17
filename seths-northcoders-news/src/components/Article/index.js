@@ -2,10 +2,10 @@ import React from "react";
 import * as api from "../../api";
 import { Link } from "react-router-dom";
 import Loading from "../Loading";
+import Vote from "../Vote";
 
 import CommentList from "../CommentList";
 import UserChip from "../UserChip";
-import { Button } from "react-materialize";
 
 class Article extends React.Component {
   state = { article: {} };
@@ -39,7 +39,6 @@ class Article extends React.Component {
         <div className="whole-main">
           <div className="cyan lighten-1 article-heading">
             <h2>{article.title}</h2>
-            <h4>{article.belongs_to}</h4>
             <Link to="/">
               <UserChip
                 className="article-chip"
@@ -47,31 +46,15 @@ class Article extends React.Component {
                 avatar_url={article.created_by.avatar_url}
               />
             </Link>
+            <h6>TOPIC: {article.belongs_to}</h6>
+            <Vote
+              handleVote={this.handleVote}
+              disabled={disabled}
+              votes={article.votes}
+            />
           </div>
 
           <article>{article.body}</article>
-
-          <h3 className="article-votes">
-            VOTES {article.votes}
-            <Button
-              onClick={() => this.handleVote("up")}
-              floating
-              large
-              className="amber lighten-1"
-              waves="light"
-              icon="thumb_up"
-              disabled={disabled}
-            />
-            <Button
-              onClick={() => this.handleVote("down")}
-              floating
-              large
-              className="amber lighten-1"
-              waves="light"
-              icon="thumb_down"
-              disabled={disabled}
-            />
-          </h3>
         </div>
         <CommentList articleId={articleId} username={username} />
       </div>
