@@ -8,18 +8,19 @@ class PostComment extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="comment-post">
         <Row>
           <Input
-            s={4}
+            s={12}
             label="Post Comment"
             type="textarea"
             value={this.state.commentText}
             onChange={this.updateCommentText}
           />
           <Button
+            s={2}
             waves="light"
-            className="grey darken-4"
+            className="amber lighten-1 black-text"
             onClick={this.submitComment}
           >
             POST
