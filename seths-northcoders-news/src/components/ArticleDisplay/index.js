@@ -68,17 +68,18 @@ class ArticleDisplay extends Component {
             handleTopicPick={this.handleTopicPick}
           />
         </Row>
-        <Row>
-          <SortButtons handleSort={this.handleSort} />
-        </Row>
         <div className="preview-display">
+          <Row>
+            <SortButtons handleSort={this.handleSort} />
+          </Row>
+
           <Carousel
-            // showStatus={false}
             centerMode
-            width="70%"
+            width="100%"
             showThumbs={false}
+            showStatus={false}
             showIndicators={false}
-            // autoPlay
+            autoPlay
             useKeyboardArrows={true}
             infiniteLoop={true}
           >

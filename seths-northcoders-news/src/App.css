@@ -62,7 +62,7 @@ label {
 }
 
 .material-icons {
-  color: #01579b;
+  color: black;
 }
 
 .article-chip {
@@ -166,21 +166,12 @@ nav {
   border-radius: 5px;
 }
 
-.carousel-status {
-  background-color: #ff0000;
-  margin-right: 10px;
-}
-
-.carousel .slide {
-  background: #ff0000;
-}
-
 .carousel-slider {
   background-color: yellow;
 }
 
 .preview-display {
-  width: 70%;
+  width: 80%;
   margin: auto;
 }
 /* 
