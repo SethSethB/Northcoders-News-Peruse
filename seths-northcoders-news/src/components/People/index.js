@@ -45,7 +45,9 @@ class People extends React.Component {
       loggedIn: { username: loggedInUsername }
     } = this.props;
 
-    const otherUsers = users.filter(user => user.username !== loggedInUsername);
+    const otherUsers = users.filter(
+      user => user.username !== loggedInUsername && user.username !== "guest"
+    );
 
     articles.sort((a, b) => {
       if (currentSort === "title") {

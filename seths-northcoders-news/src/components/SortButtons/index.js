@@ -14,7 +14,7 @@ const SortButton = ({ handleSort }) => {
         Title
       </Button>
       <Button
-        className="grey darken-4"
+        // className="grey darken-4"
         waves="light"
         value="votes"
         onClick={handleSort}
