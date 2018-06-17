@@ -7,13 +7,28 @@ class PostArticle extends React.Component {
     currentTopic: "New Topic",
     currentText: "",
     currentTitle: "",
-    newTopicName: ""
+    newTopicName: "",
+    postingDisabled: false
+  };
+
+  componentDidMount = () => {
+    const postingDisabled = this.props.loggedIn.username === "guest";
+
+    this.setState({ postingDisabled });
+  };
+
+  componentDidUpdate = prevProps => {
+    if (prevProps.loggedIn !== this.props.loggedIn) {
+      const postingDisabled = this.props.loggedIn.username === "guest";
+      this.setState({ postingDisabled });
+    }
   };
 
   render() {
-    const { loggedIn, availableTopics, postArticle } = this.props;
+    const { availableTopics, postArticle } = this.props;
 
     const {
+      postingDisabled,
       currentTopic,
       currentText,
       currentTitle,
@@ -64,9 +79,11 @@ class PostArticle extends React.Component {
           onClick={() =>
             postArticle(currentTopic, currentText, currentTitle, newTopicName)
           }
+          disabled={postingDisabled}
         >
           POST
         </Button>
+        {postingDisabled && <p>You need to be logged-in to post</p>}
       </div>
     );
   }

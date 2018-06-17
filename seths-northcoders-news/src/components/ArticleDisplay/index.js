@@ -30,6 +30,7 @@ class ArticleDisplay extends Component {
 
   componentDidUpdate = async prevProps => {
     const currentTopic = this.props.match.params.topic;
+
     if (prevProps.match.params.topic !== currentTopic) {
       const data =
         currentTopic === "ALL"

@@ -45,7 +45,6 @@ class App extends Component {
         <Route exact path="/" component={WelcomePage} />
 
         <Route
-          exact
           path="/peruse/:topic"
           render={props => (
             <ArticleDisplay
@@ -55,6 +54,8 @@ class App extends Component {
             />
           )}
         />
+
+        <Route exact path="/peruse/" component={WelcomePage} />
 
         <Route
           path="/post"
