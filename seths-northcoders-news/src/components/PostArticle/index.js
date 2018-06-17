@@ -1,6 +1,7 @@
 import React from "react";
 import { Row, Input, Button } from "react-materialize";
 import TopicPick from "../TopicPick";
+import UserChip from "../UserChip";
 
 class PostArticle extends React.Component {
   state = {
@@ -25,7 +26,11 @@ class PostArticle extends React.Component {
   };
 
   render() {
-    const { availableTopics, postArticle } = this.props;
+    const {
+      availableTopics,
+      postArticle,
+      loggedIn: { username, avatar_url }
+    } = this.props;
 
     const {
       postingDisabled,
@@ -36,16 +41,22 @@ class PostArticle extends React.Component {
     } = this.state;
 
     return (
-      <div>
+      <div className="post-form">
+        {!postingDisabled && (
+          <Row>
+            <UserChip username={username} avatar_url={avatar_url} />
+          </Row>
+        )}
         <Row>
           <TopicPick
+            s={2}
             availableTopics={availableTopics}
             defaultOption="New Topic"
             handleTopicPick={this.handleTopicPick}
           />
           {this.state.currentTopic === "New Topic" && (
             <Input
-              s={2}
+              s={3}
               type="textarea"
               value={this.state.newTopicName}
               onChange={this.updateNewTopicName}
@@ -56,7 +67,7 @@ class PostArticle extends React.Component {
 
         <Row>
           <Input
-            s={5}
+            s={4}
             type="textarea"
             label="Title*"
             value={this.state.currentTitle}
@@ -65,7 +76,7 @@ class PostArticle extends React.Component {
         </Row>
         <Row>
           <Input
-            s={5}
+            s={8}
             label="Content*"
             type="textarea"
             value={this.state.currentText}

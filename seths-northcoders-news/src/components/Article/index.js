@@ -38,7 +38,8 @@ class Article extends React.Component {
       <div className="article-page">
         <div className="whole-main">
           <div className="cyan lighten-1 article-heading">
-            <h2>{article.title}</h2>
+            <h2 className="article-title">{article.title} </h2>
+            <h5 className="topic-label">{article.belongs_to}</h5>
             <Link to={`/people/${article.created_by.username}`}>
               <UserChip
                 className="article-chip"
@@ -46,7 +47,7 @@ class Article extends React.Component {
                 avatar_url={article.created_by.avatar_url}
               />
             </Link>
-            <h6>TOPIC: {article.belongs_to}</h6>
+
             <Vote
               handleVote={this.handleVote}
               disabled={disabled}

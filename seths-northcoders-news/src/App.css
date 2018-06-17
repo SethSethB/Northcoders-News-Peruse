@@ -1,3 +1,7 @@
+* {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
 .card {
   height: 25rem;
   display: flex;
@@ -35,25 +39,25 @@ nav ul a:hover {
 }
 
 textarea.materialize-textarea:focus:not([readonly]) {
-  border-bottom: 1px solid #01579b;
+  border-bottom: 1px solid #26c6da;
 
-  box-shadow: 0 1px 0 0 #01579b;
+  box-shadow: 0 1px 0 0 #26c6da;
 }
 
 .wrapper input.select-dropdown:focus:not([readonly]) {
-  color: #01579b;
+  color: #26c6da;
 }
 
 textarea.materialize-textarea:focus:not([readonly]) + label {
-  color: #01579b;
+  color: #26c6da;
 }
 
 ul.dropdown-content.select-dropdown li span {
-  color: #01579b;
+  color: #26c6da;
 }
 
 .select-dropdown {
-  color: #01579b;
+  color: #26c6da;
 }
 
 label {
@@ -74,11 +78,14 @@ label {
 }
 
 .select-wrapper input.select-dropdown {
-  border-bottom: 1px solid #01579b;
+  border-bottom: 1px solid #26c6da;
+  padding-top: 20px;
 }
 
 textarea.materialize-textarea {
-  border-bottom: 1px solid #01579b;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #26c6da;
 }
 
 .article-page {
@@ -121,6 +128,7 @@ textarea.materialize-textarea {
 }
 
 h1 {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   text-align: center;
   background-color: #26c6da;
   width: auto;
@@ -178,9 +186,28 @@ nav {
 .commentBody {
   margin-bottom: 2px;
 }
+
+.post-form {
+  margin: 3em;
+  padding: 1.2em;
+  margin-bottom: 1em;
+  border: black solid 2px;
+  border-radius: 0.9em;
+  min-width: 300px;
+}
+
+.topic-label {
+  color: #ffca28;
+
+  font-size: 20px;
+}
+
+.article-title {
+  margin-bottom: 0px;
+}
 /* 
 .input .select-dropdown active {
-  color: #01579b;
+  color: #26c6da;
 } */
 
 /* amber lighten-1  */
