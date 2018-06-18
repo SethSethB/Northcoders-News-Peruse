@@ -9,7 +9,8 @@ const TopicPick = ({ availableTopics, defaultOption, handleTopicPick }) => {
   });
   return (
     <Input
-      s={4}
+      className="input-field"
+      s={2}
       type="select"
       label="SELECT TOPIC"
       defaultValue={defaultOption}

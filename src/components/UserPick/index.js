@@ -12,7 +12,8 @@ class UserPick extends React.Component {
     });
     return (
       <Input
-        s={3}
+        className="input-field"
+        s={2}
         type="select"
         label="SELECT USER"
         defaultValue={defaultOption}

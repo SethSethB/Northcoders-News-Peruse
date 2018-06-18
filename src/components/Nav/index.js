@@ -33,7 +33,13 @@ const Nav = ({ loggedIn: { avatar_url, username }, toggleLogin }) => {
           }
         >
           <form onSubmit={toggleLogin}>
-            <Input s={3} type="select" label="USERNAME" id="username">
+            <Input
+              className="input-field"
+              s={3}
+              type="select"
+              label="USERNAME"
+              id="username"
+            >
               <option value="cooljmessy">cooljmessy</option>
               <option value="grumpy19">grumpy19</option>
               <option value="happyamy2016">happyamy2016</option>

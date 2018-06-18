@@ -2,6 +2,7 @@ import React from "react";
 import { Row, Input, Button } from "react-materialize";
 import TopicPick from "../TopicPick";
 import UserChip from "../UserChip";
+import { Link } from "react-router-dom";
 
 class PostArticle extends React.Component {
   state = {
@@ -44,7 +45,9 @@ class PostArticle extends React.Component {
       <div className="post-form">
         {!postingDisabled && (
           <Row>
-            <UserChip username={username} avatar_url={avatar_url} />
+            <Link to={`/people/${username}`}>
+              <UserChip username={username} avatar_url={avatar_url} />
+            </Link>
           </Row>
         )}
         <Row>
