@@ -221,3 +221,23 @@ article {
   padding-left: 0.8em;
   padding-right: 0.8em;
 }
+
+.selector {
+  margin-left: 3em;
+  width: 20%;
+}
+
+.selector label {
+  color: #ffca28;
+  width: 20%;
+  padding-bottom: 1em;
+}
+
+.browser-default {
+  border-bottom: none;
+  color: #26c6da;
+}
+
+.login {
+  margin-top: 1.2em;
+}

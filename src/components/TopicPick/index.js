@@ -1,5 +1,4 @@
 import React from "react";
-import { Input } from "react-materialize";
 
 const TopicPick = ({ availableTopics, defaultOption, handleTopicPick }) => {
   availableTopics.sort((a, b) => {
@@ -8,20 +7,23 @@ const TopicPick = ({ availableTopics, defaultOption, handleTopicPick }) => {
     return 0;
   });
   return (
-    <select
-      onChange={handleTopicPick}
-      defaultValue={defaultOption}
-      className="browser-default"
-    >
-      <option value={defaultOption}>{defaultOption}</option>
-      {availableTopics.map(topic => {
-        return (
-          <option key={topic.slug} value={topic.slug}>
-            {topic.title}
-          </option>
-        );
-      })}
-    </select>
+    <div className="selector">
+      <label>CHOOSE TOPIC</label>
+      <select
+        onChange={handleTopicPick}
+        defaultValue={defaultOption}
+        className="browser-default"
+      >
+        <option value={defaultOption}>{defaultOption}</option>
+        {availableTopics.map(topic => {
+          return (
+            <option key={topic.slug} value={topic.slug}>
+              {topic.title}
+            </option>
+          );
+        })}
+      </select>
+    </div>
   );
 };
 

@@ -1,5 +1,4 @@
 import React from "react";
-import { Input } from "react-materialize";
 
 class UserPick extends React.Component {
   render() {
@@ -11,16 +10,16 @@ class UserPick extends React.Component {
       return 0;
     });
     return (
-      <Input
-        className="input-field"
-        s={2}
-        type="select"
-        label="SELECT USER"
-        defaultValue={defaultOption}
-        onChange={handleUserPick}
-      >
-        {this.userOptions(users)}
-      </Input>
+      <div className="selector">
+        <label>CHOOSE USER</label>
+        <select
+          onChange={handleUserPick}
+          defaultValue={defaultOption}
+          className="browser-default"
+        >
+          {this.userOptions(users)}
+        </select>
+      </div>
     );
   }
 
