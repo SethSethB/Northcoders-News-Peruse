@@ -38,7 +38,7 @@ nav ul a:hover {
   background-color: rgba(255, 255, 255, 0);
 }
 
-textarea.materialize-textarea:focus:not([readonly]) {
+/* textarea.materialize-textarea:focus:not([readonly]) {
   border-bottom: 1px solid #26c6da;
 
   box-shadow: 0 1px 0 0 #26c6da;
@@ -50,7 +50,7 @@ textarea.materialize-textarea:focus:not([readonly]) {
 
 textarea.materialize-textarea:focus:not([readonly]) + label {
   color: #26c6da;
-}
+} */
 
 ul.dropdown-content.select-dropdown li span {
   color: #26c6da;
