@@ -6,7 +6,7 @@ const SortButton = ({ handleSort }) => {
     <div>
       <label>SORT BY</label>
       <Button
-        className="amber lighten-1 black-text sort"
+        className="black-text sort"
         waves="light"
         value="title"
         onClick={() => handleSort("title")}
@@ -14,7 +14,7 @@ const SortButton = ({ handleSort }) => {
       />
 
       <Button
-        className="amber lighten-1 black-text sort"
+        className="black-text sort"
         waves="light"
         value="votes"
         onClick={() => handleSort("votes")}
@@ -22,7 +22,7 @@ const SortButton = ({ handleSort }) => {
       />
 
       <Button
-        className="amber lighten-1 black-text sort"
+        className="black-text sort"
         waves="light"
         value="comments"
         onClick={() => handleSort("comments")}
