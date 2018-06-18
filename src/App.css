@@ -241,3 +241,16 @@ article {
 .login {
   margin-top: 1.2em;
 }
+
+@media all and (max-width: 500px) {
+  .selector {
+    margin-left: 3em;
+    width: 40%;
+  }
+
+  .selector label {
+    color: #ffca28;
+    width: 40%;
+    padding-bottom: 1em;
+  }
+}
