@@ -1,5 +1,6 @@
 * {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  overflow-wrap: break-word;
 }
 
 .card {
@@ -229,8 +230,9 @@ article {
 
 .selector label {
   color: #ffca28;
-  width: 20%;
+  width: 40%;
   padding-bottom: 1em;
+  overflow-wrap: normal;
 }
 
 .browser-default {
