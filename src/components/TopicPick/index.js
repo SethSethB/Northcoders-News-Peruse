@@ -8,12 +8,10 @@ const TopicPick = ({ availableTopics, defaultOption, handleTopicPick }) => {
     return 0;
   });
   return (
-    <Input
-      s={2}
-      type="select"
-      label="SELECT TOPIC"
-      defaultValue={defaultOption}
+    <select
       onChange={handleTopicPick}
+      defaultValue={defaultOption}
+      className="browser-default"
     >
       <option value={defaultOption}>{defaultOption}</option>
       {availableTopics.map(topic => {
@@ -23,7 +21,7 @@ const TopicPick = ({ availableTopics, defaultOption, handleTopicPick }) => {
           </option>
         );
       })}
-    </Input>
+    </select>
   );
 };
 
