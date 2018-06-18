@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import TopicPick from "../TopicPick";
 import SortButtons from "../SortButtons";
 
-import { Row } from "react-materialize";
+import { Row, Input } from "react-materialize";
 import * as api from "../../api";
 
 import Loading from "../Loading";
@@ -64,6 +64,18 @@ class ArticleDisplay extends Component {
       <Loading />
     ) : (
       <div>
+        <Row>
+          <Input
+            s={12}
+            type="select"
+            label="Materialize Select"
+            defaultValue="2"
+          >
+            <option value="1">Option 1</option>
+            <option value="2">Option 2</option>
+            <option value="3">Option 3</option>
+          </Input>
+        </Row>
         <Row>
           <TopicPick
             availableTopics={availableTopics}
