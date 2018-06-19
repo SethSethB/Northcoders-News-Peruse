@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import TopicPick from "../TopicPick";
 import SortButtons from "../SortButtons";
+import articleSort from "../../utils";
 
 import { Row } from "react-materialize";
 import * as api from "../../api";
@@ -16,6 +17,7 @@ class ArticleDisplay extends Component {
 
   componentDidMount = async () => {
     const currentTopic = this.props.match.params.topic;
+    const { currentSort } = this.state;
 
     try {
       const {
@@ -25,40 +27,40 @@ class ArticleDisplay extends Component {
           ? await api.fetchArticles()
           : await api.fetchArticlesByTopic(currentTopic);
 
+      articleSort(articles, currentSort);
       this.setState({ articles });
     } catch (err) {
       if (err.response.status === 404 || 400) this.props.history.push("/404");
     }
   };
 
-  componentDidUpdate = async prevProps => {
+  componentDidUpdate = async (prevProps, prevState) => {
     const currentTopic = this.props.match.params.topic;
+    const { currentSort } = this.state;
 
-    if (prevProps.match.params.topic !== currentTopic) {
-      const data =
-        currentTopic === "ALL"
-          ? await api.fetchArticles()
-          : await api.fetchArticlesByTopic(currentTopic);
-      const articles = [...data.data.articles];
-      this.setState({ articles });
+    if (
+      prevProps.match.params.topic !== currentTopic ||
+      prevState.currentSort !== currentSort
+    ) {
+      try {
+        const {
+          data: { articles }
+        } =
+          currentTopic === "ALL"
+            ? await api.fetchArticles()
+            : await api.fetchArticlesByTopic(currentTopic);
+
+        articleSort(articles, currentSort);
+        this.setState({ articles });
+      } catch (err) {
+        if (err.response.status === 404 || 400) this.props.history.push("/404");
+      }
     }
   };
 
   render() {
     const { availableTopics } = this.props;
-    const { articles, currentSort } = this.state;
-
-    articles.sort((a, b) => {
-      if (currentSort === "title") {
-        if (a[currentSort] < b[currentSort]) return -1;
-        if (a[currentSort] > b[currentSort]) return 1;
-        return 0;
-      } else {
-        if (b[currentSort] < a[currentSort]) return -1;
-        if (b[currentSort] > a[currentSort]) return 1;
-        return 0;
-      }
-    });
+    const { articles } = this.state;
 
     return !articles.length ? (
       <Loading />

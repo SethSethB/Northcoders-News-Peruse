@@ -6,6 +6,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import ArticleCarousel from "../ArticleCarousel";
 import SortButtons from "../SortButtons";
 import { Row } from "react-materialize";
+import articleSort from "../../utils";
 
 class People extends React.Component {
   state = {
@@ -16,6 +17,7 @@ class People extends React.Component {
 
   componentDidMount = async () => {
     const selectedUser = this.props.match.params.username;
+    const { currentSort } = this.state;
 
     try {
       const {
@@ -25,39 +27,35 @@ class People extends React.Component {
       const {
         data: { articles }
       } = await api.fetchArticlesByUsername(selectedUser);
+
+      articleSort(articles, currentSort);
       this.setState({ users, articles });
     } catch (err) {
       if (err.response.status === 404 || 400) this.props.history.push("/404");
     }
   };
 
-  componentDidUpdate = async prevProps => {
+  componentDidUpdate = async (prevProps, prevState) => {
     const selectedUser = this.props.match.params.username;
-    if (prevProps.match.params.username !== selectedUser) {
+    const { currentSort } = this.state;
+
+    if (
+      prevProps.match.params.username !== selectedUser ||
+      prevState.currentSort !== currentSort
+    ) {
       const {
         data: { articles }
       } = await api.fetchArticlesByUsername(selectedUser);
 
+      articleSort(articles, currentSort);
       this.setState({ articles });
     }
   };
 
   render() {
-    const { users, articles, currentSort } = this.state;
+    const { users, articles } = this.state;
 
     const selectedUser = this.props.match.params.username;
-
-    articles.sort((a, b) => {
-      if (currentSort === "title") {
-        if (a[currentSort] < b[currentSort]) return -1;
-        if (a[currentSort] > b[currentSort]) return 1;
-        return 0;
-      } else {
-        if (b[currentSort] < a[currentSort]) return -1;
-        if (b[currentSort] > a[currentSort]) return 1;
-        return 0;
-      }
-    });
 
     return !users.length ? (
       <Loading />

@@ -7,7 +7,7 @@ const DeleteButton = ({ deleteComment, comment_id }) => {
       onClick={() => deleteComment(comment_id)}
       floating
       small="true"
-      className=" deep-orange lighten-1"
+      className="deep-orange lighten-1"
       waves="light"
       icon="delete"
     />

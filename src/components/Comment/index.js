@@ -47,7 +47,9 @@ class Comment extends React.Component {
             disabled={disabled}
           />
           {disabled && (
-            <DeleteButton comment_id={_id} deleteComment={deleteComment} />
+            <span className="delete">
+              <DeleteButton comment_id={_id} deleteComment={deleteComment} />
+            </span>
           )}
         </span>
       </div>

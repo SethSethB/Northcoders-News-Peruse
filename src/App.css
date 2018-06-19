@@ -259,6 +259,12 @@ article {
   background-color: #26c6da;
 }
 
+.delete {
+  padding-left: 1em;
+
+  display: inline;
+}
+
 @media all and (max-width: 500px) {
   .selector {
     margin-left: 3em;

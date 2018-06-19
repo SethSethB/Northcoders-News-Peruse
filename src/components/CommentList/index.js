@@ -15,10 +15,20 @@ class CommentList extends React.Component {
     });
   };
 
+  // componentDidUpdate = async (prevProps, prevState) => {
+  //   if (prevState.comments.length !== this.state.comments.length) {
+  //     const { articleId } = this.props;
+  //     const commentsRes = await api.fetchComments(articleId);
+
+  //     this.setState({
+  //       comments: commentsRes.data.comments
+  //     });
+  //   }
+  // };
+
   render() {
     const { comments } = this.state;
-
-    comments.sort((a, b) => {
+    const commentsSorted = [...comments].sort((a, b) => {
       if (b.created_at < a.created_at) return -1;
       if (b.created_at > a.created_at) return 1;
       return 0;
@@ -28,7 +38,7 @@ class CommentList extends React.Component {
       <div>
         <h2 className="cyan lighten-1 commentHeader">COMMENTS</h2>
         <PostComment postComment={this.postComment} />
-        {comments.map((comment, i) => (
+        {commentsSorted.map((comment, i) => (
           <Comment
             username={this.props.username}
             key={i}
@@ -56,16 +66,20 @@ class CommentList extends React.Component {
     if (!comment) return null;
     const { articleId } = this.props;
     const { username } = this.props;
+
     api.postComment(comment, articleId, username).then(({ data }) => {
-      const { comments } = this.state;
       const { created_by } = data;
-      comments.unshift({
-        ...data,
-        created_by: { _id: created_by, username }
-      });
+      const { comments } = this.state;
+      const updatedComments = [
+        {
+          ...data,
+          created_by: { _id: created_by, username }
+        },
+        ...comments
+      ];
 
       this.setState({
-        comments
+        comments: updatedComments
       });
     });
   };

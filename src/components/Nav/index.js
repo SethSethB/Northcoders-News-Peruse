@@ -45,21 +45,6 @@ const Nav = ({ loggedIn: { avatar_url, username }, toggleLogin }) => {
               </select>
             </div>
 
-            {/* <Input
-              className="input-field"
-              s={3}
-              type="select"
-              label="USERNAME"
-              id="username"
-            >
-              <option value="cooljmessy">cooljmessy</option>
-              <option value="grumpy19">grumpy19</option>
-              <option value="happyamy2016">happyamy2016</option>
-              <option value="jessjelly">jessjelly</option>
-              <option value="tickle122">tickle122</option>
-              <option value="weegembump">weegembump</option>
-            </Input> */}
-
             <Button className="amber lighten-1 black-text login" type="submit">
               LOGIN
             </Button>
