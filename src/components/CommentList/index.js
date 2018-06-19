@@ -15,17 +15,6 @@ class CommentList extends React.Component {
     });
   };
 
-  // componentDidUpdate = async (prevProps, prevState) => {
-  //   if (prevState.comments.length !== this.state.comments.length) {
-  //     const { articleId } = this.props;
-  //     const commentsRes = await api.fetchComments(articleId);
-
-  //     this.setState({
-  //       comments: commentsRes.data.comments
-  //     });
-  //   }
-  // };
-
   render() {
     const { comments } = this.state;
     const commentsSorted = [...comments].sort((a, b) => {
@@ -38,10 +27,10 @@ class CommentList extends React.Component {
       <div>
         <h2 className="cyan lighten-1 commentHeader">COMMENTS</h2>
         <PostComment postComment={this.postComment} />
-        {commentsSorted.map((comment, i) => (
+        {commentsSorted.map(comment => (
           <Comment
             username={this.props.username}
-            key={i}
+            key={comment._id}
             comment={comment}
             handleCommentVote={this.handleCommentVote}
             deleteComment={this.deleteComment}

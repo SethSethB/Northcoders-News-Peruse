@@ -30,7 +30,8 @@ class ArticleDisplay extends Component {
       articleSort(articles, currentSort);
       this.setState({ articles });
     } catch (err) {
-      if (err.response.status === 404 || 400) this.props.history.push("/404");
+      if (err.response.status === 404 || 400)
+        this.props.history.push("/pagenotfound");
     }
   };
 
@@ -53,7 +54,8 @@ class ArticleDisplay extends Component {
         articleSort(articles, currentSort);
         this.setState({ articles });
       } catch (err) {
-        if (err.response.status === 404 || 400) this.props.history.push("/404");
+        if (err.response.status === 404 || 400)
+          this.props.history.push("/pagenotfound");
       }
     }
   };

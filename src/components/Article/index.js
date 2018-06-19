@@ -20,7 +20,8 @@ class Article extends React.Component {
         article: articleRes.data
       });
     } catch (err) {
-      if (err.response.status === 404 || 400) this.props.history.push("/404");
+      if (err.response.status === 404 || 400)
+        this.props.history.push("/pagenotfound");
     }
   };
 

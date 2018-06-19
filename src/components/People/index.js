@@ -31,7 +31,8 @@ class People extends React.Component {
       articleSort(articles, currentSort);
       this.setState({ users, articles });
     } catch (err) {
-      if (err.response.status === 404 || 400) this.props.history.push("/404");
+      if (err.response.status === 404 || 400)
+        this.props.history.push("/pagenotfound");
     }
   };
 
