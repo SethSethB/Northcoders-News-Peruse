@@ -37,7 +37,7 @@ Clone this repository with the following terminal command:
 git clone https://github.com/SethSethB/Northcoders-News-Peruse.git
 ```
 
-Change into the FE-FT-NC-News directory:
+Change into the Northcoders-News-Peruse directory:
 
 ```
 cd Northcoders-News-Peruse
