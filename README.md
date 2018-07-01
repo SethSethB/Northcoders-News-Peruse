@@ -14,7 +14,7 @@ As a guest you are able to post comments and vote on all articles/comments, but 
 
 The app is live [here](https://seth-nc-news-peruse.herokuapp.com) - hope you enjoy!
 
-For the back end you can access the live API [here](https://seth-northcoders-news.herokuapp.com/api/) and the code [here](https://github.com/SethSethB/BE-FT-northcoders-news).
+For the back end you can access the live API [here](https://seth-northcoders-news.herokuapp.com/api/) and the code [here](https://github.com/SethSethB/Northcoders-News-Peruse-Backend).
 
 ## Prerequisites
 
