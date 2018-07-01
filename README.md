@@ -34,13 +34,13 @@ You will need the following installed to run NC News Peruse locally:
 Clone this repository with the following terminal command:
 
 ```
-git clone https://github.com/SethSethB/FE-FT-NC-News
+git clone https://github.com/SethSethB/Northcoders-News-Peruse.git
 ```
 
 Change into the FE-FT-NC-News directory:
 
 ```
-cd FE-FT-NC-News
+cd Northcoders-News-Peruse
 ```
 
 Now run the following command to install all dependencies:
